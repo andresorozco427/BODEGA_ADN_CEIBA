@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.ceiba.controlador.ControladorHistorialTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-07-12T15:52:04" hostname="JOSE-USUGA" time="0.003">
+  <properties/>
+  <testcase name="verificarIngreso" classname="com.ceiba.controlador.ControladorHistorialTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
