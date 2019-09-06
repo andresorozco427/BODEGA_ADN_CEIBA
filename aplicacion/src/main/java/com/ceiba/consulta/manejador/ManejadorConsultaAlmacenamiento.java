@@ -18,7 +18,7 @@ public class ManejadorConsultaAlmacenamiento {
 		this.servicioConsultaContenedores = servicioConsultaContenedores;
 	}
 	
-	public List<HistorialAlmacenamiento> ListarContenedoresAlmacenados(){
+	public List<HistorialAlmacenamiento> listarContenedoresAlmacenados(){
 		return this.servicioConsultaContenedores.listarContenedoresAlmacenados();
 	}
 	

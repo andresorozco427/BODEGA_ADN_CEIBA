@@ -1,7 +1,7 @@
 package com.ceiba.modelo;
 
 import com.ceiba.excepcion.ExceptionValoresObligatorios;
-import com.ceiba.excepcion.ExpceptionLongitudCodigo;
+import com.ceiba.excepcion.ExcepcionLongitudCodigo;
 
 public final class ValidarArgumentosDelContenedor {
 	
@@ -17,7 +17,7 @@ public final class ValidarArgumentosDelContenedor {
 		
 		public static void validarArgumentosLongitudCodigo(String codigo, int longitud, String mensaje) {
 			if(codigo.length() != longitud) {
-				throw new ExpceptionLongitudCodigo(mensaje);
+				throw new ExcepcionLongitudCodigo(mensaje);
 			}
 		}
 		

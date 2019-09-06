@@ -21,11 +21,11 @@ public class Contenedor {
 	
 	private String codigo;
 	private String mercancia;
-	private Perecedero perecedero;
+	private boolean perecedero;
 	private String color;
 	private String peso;	
 	
-	public Contenedor(String codigo, String mercancia, Perecedero perecedero ,String color, String peso) {
+	public Contenedor(String codigo, String mercancia, boolean perecedero ,String color, String peso) {
 		ValidarArgumentosDelContenedor.validarArgumentosCodigo(codigo, MENSAJE_CODIGO_ES_OBLIGATORIO);
 		ValidarArgumentosDelContenedor.validarArgumentosLongitudCodigo(codigo, LONGITUD_CODIGO, MENSAJE_LONGITUD_DEL_CODIGO_INVALIDA);
 		
@@ -45,9 +45,6 @@ public class Contenedor {
 	public String getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
 	public String getMercancia() {
 		return mercancia;
 	}
@@ -66,12 +63,10 @@ public class Contenedor {
 	public void setPeso(String peso) {
 		this.peso = peso;
 	}
-	public Perecedero getPerecedero() {
+	public boolean getPerecedero() {
 		return perecedero;
 	}
-
-
-	public void setPerecedero(Perecedero perecedero) {
+	public void setPerecedero(boolean perecedero) {
 		this.perecedero = perecedero;
 	}
 	

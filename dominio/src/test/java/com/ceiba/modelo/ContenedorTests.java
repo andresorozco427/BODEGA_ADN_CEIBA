@@ -1,10 +1,9 @@
 package com.ceiba.modelo;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
 import org.junit.Test;
 
+import com.ceiba.excepcion.ExcepcionLongitudCodigo;
+import com.ceiba.excepcion.ExceptionValoresObligatorios;
 import com.ceiba.testdatabuilder.ContenedorTestBuilder;
 
 
@@ -15,21 +14,13 @@ public class ContenedorTests {
 	private static final String MENSAJE_MERCANCIA_ES_OBLIGATORIA = "la mercancia del contenedor es obligatoria";
 	private static final String MENSAJE_COLOR_ES_OBLIGATORIO = "el color del contenedor es obligatorio";
 	private static final String MENSAJE_PESO_ES_OBLIGATORIO = "el peso del contenedor es obligatorio";
-	private static final String MENSAJE_PERECEDERO_ES_OBLIGATORIO = "la confirmacion si es perecedero o no es obligatorio";
 
 	@Test
 	public void validarArgumentosCodigoVacioModeloContenedor() {
 		//Arrange
 		ContenedorTestBuilder contenedorTestBuilder = new ContenedorTestBuilder().conCodigo(null);
-		//Act
-		try {	
-			contenedorTestBuilder.build();
-			fail();
-		
-		}catch (Exception e) {
-		//Assert
-			assertEquals(MENSAJE_CODIGO_ES_OBLIGATORIO, e.getMessage());
-		}
+		//Act //Assert
+		PruebaBase.asserThrow(() -> contenedorTestBuilder.build(), ExceptionValoresObligatorios.class,MENSAJE_CODIGO_ES_OBLIGATORIO);
 		
 	}
 	
@@ -38,13 +29,8 @@ public class ContenedorTests {
 		//Arrange
 		ContenedorTestBuilder contenedorTestBuilder = new ContenedorTestBuilder().conCodigo(CODIGO);
 		
-		//Act
-		try {
-			contenedorTestBuilder.build();
-		}catch (Exception e) {
-			//Assert
-			assertEquals(MENSAJE_LONGITUD_DEL_CODIGO_INVALIDA, e.getMessage());
-		}
+		//Act //Assert
+		PruebaBase.asserThrow(() -> contenedorTestBuilder.build(), ExcepcionLongitudCodigo.class,MENSAJE_LONGITUD_DEL_CODIGO_INVALIDA);
 	}
 	
 	@Test
@@ -52,28 +38,8 @@ public class ContenedorTests {
 		//Arrange
 		ContenedorTestBuilder contenedorTestBuilder = new ContenedorTestBuilder().conMercancia(null);
 		
-		//Act
-		try {
-			contenedorTestBuilder.build();
-		} catch (Exception e) {
-			//Assert
-			assertEquals(MENSAJE_MERCANCIA_ES_OBLIGATORIA, e.getMessage());
-		}
-	}
-	
-	
-	@Test
-	public void validarArgumentosEsPerecederoEsVacioModeloContenedor() {
-		//Arrange
-		ContenedorTestBuilder contenedorTestBuilder = new ContenedorTestBuilder().conEsPerecedero(null);
-		
-		//Act
-		try {
-			contenedorTestBuilder.build();
-		} catch (Exception e) {
-			//Assert
-			assertEquals(MENSAJE_PERECEDERO_ES_OBLIGATORIO, e.getMessage());
-		}
+		//Act //Assert
+		PruebaBase.asserThrow(() -> contenedorTestBuilder.build(), ExceptionValoresObligatorios.class,MENSAJE_MERCANCIA_ES_OBLIGATORIA);
 	}
 	
 	@Test
@@ -81,26 +47,16 @@ public class ContenedorTests {
 		//Arrange
 		ContenedorTestBuilder contenedorTestBuilder = new ContenedorTestBuilder().conColor(null);
 		
-		//Act
-		try {
-			contenedorTestBuilder.build();
-		} catch (Exception e) {
-			//Assert
-			assertEquals(MENSAJE_COLOR_ES_OBLIGATORIO, e.getMessage());
-		}
+		//Act //Assert
+		PruebaBase.asserThrow(() -> contenedorTestBuilder.build(), ExceptionValoresObligatorios.class, MENSAJE_COLOR_ES_OBLIGATORIO);
 	}
 	@Test
 	public void validarArgumentosPesoVacioModeloContenedor() {
 		//Arrange
 		ContenedorTestBuilder contenedorTestBuilder = new ContenedorTestBuilder().conPeso(null);
 		
-		//Act
-		try {
-			contenedorTestBuilder.build();
-		} catch (Exception e) {
-			//Assert
-			assertEquals(MENSAJE_PESO_ES_OBLIGATORIO, e.getMessage());
-		}
+		//Act //Assert
+		PruebaBase.asserThrow(() -> contenedorTestBuilder.build(), ExceptionValoresObligatorios.class, MENSAJE_PESO_ES_OBLIGATORIO);
 	}
 
 }

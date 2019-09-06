@@ -1,19 +1,19 @@
 package com.ceiba.comando;
 
-import com.ceiba.modelo.Perecedero;
 
 public class ComandoContenedor {
 	
 	private String codigo;
 	private String mercancia;
-	private Perecedero perecedero;
+	private boolean perecedero;
 	private String color;
 	private String peso;
 	
-	private ComandoContenedor() {
+	public ComandoContenedor() {
+		
 	}
-
-	private ComandoContenedor(String codigo, String mercancia, Perecedero perecedero, String color, String peso) {
+	
+	public ComandoContenedor(String codigo, String mercancia, boolean perecedero, String color, String peso) {
 		this.codigo = codigo;
 		this.mercancia = mercancia;
 		this.perecedero = perecedero;
@@ -25,41 +25,21 @@ public class ComandoContenedor {
 		return codigo;
 	}
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-
 	public String getMercancia() {
 		return mercancia;
 	}
 
-	public void setMercancia(String mercancia) {
-		this.mercancia = mercancia;
-	}
-
-	public Perecedero getPerecedero() {
+	public boolean getPerecedero() {
 		return perecedero;
-	}
-
-	public void setPerecedero(Perecedero perecedero) {
-		this.perecedero = perecedero;
 	}
 
 	public String getColor() {
 		return color;
 	}
 
-	public void setColor(String color) {
-		this.color = color;
-	}
-
 	public String getPeso() {
 		return peso;
-	}
-
-	public void setPeso(String peso) {
-		this.peso = peso;
-	}	
+	} 	 
 	
 	
 	

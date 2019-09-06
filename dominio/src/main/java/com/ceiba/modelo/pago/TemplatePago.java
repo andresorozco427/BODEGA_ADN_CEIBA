@@ -9,11 +9,11 @@ public class TemplatePago {
 		
 	}
 	
-	public static Pago gestionarPago(String codigo) {
+	public static CalcularPago gestionarPago(String codigo) {
 		if(validarDosPrimerasLetras(codigo)) {
-			return new PagoContenedorConValorAgregado();
+			return new PagoContenedorConRestricciones();
 		}else {
-			return new PagoContenedor();
+			return new PagoContenedorSinRestricciones();
 		}
 	}	
 	private static boolean validarDosPrimerasLetras(String codigo) {

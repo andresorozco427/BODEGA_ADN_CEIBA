@@ -21,7 +21,6 @@ public class HistorialAlmacenamiento {
 
 
 	public HistorialAlmacenamiento() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public HistorialAlmacenamiento(LocalDateTime fechaIngreso, LocalDateTime fechaSalida, Contenedor contenedor,

@@ -1,10 +1,9 @@
 package com.ceiba.modelo;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
 
+import com.ceiba.excepcion.ExcepcionValoresEsperadosSalida;
 import com.ceiba.testdatabuilder.RetirarContenedorTestBuilder;
 
 public class RetirarContenedorTest {
@@ -13,64 +12,48 @@ public class RetirarContenedorTest {
 	private static final String MENSAJE_NO_HAY_FECHASALIDA = "No se encontro fecha de salida";
 	private static final String MENSAJE_NO_GENERO_PAGO = "No se encontro fecha de ingreso";	
 	
-	private RetirarContenedorTestBuilder salidaHistorialAlmacenamiento;
+	private RetirarContenedorTestBuilder salidaHistorialAlmacenamientoTestBuilder;
 	
 	@Before
 	public void setUp() {
-		this.salidaHistorialAlmacenamiento = new RetirarContenedorTestBuilder();
+		this.salidaHistorialAlmacenamientoTestBuilder = new RetirarContenedorTestBuilder();
 	}
 	
 	@Test
 	public void validarArgumentoCodigoVacioRespuestaSalida() {
 		//Arrange		
-		salidaHistorialAlmacenamiento.conCodigo(null);	
-		//Act 
-		try {
-			salidaHistorialAlmacenamiento.build();
-		} catch (Exception e) {
-			//Assert
-			assertEquals(MENSAJE_NO_HAY_CODIGO, e.getMessage());
-		}	
+		salidaHistorialAlmacenamientoTestBuilder.conCodigo(null);	
+		
+		//Act //Assert
+		PruebaBase.asserThrow(() -> salidaHistorialAlmacenamientoTestBuilder.build(), ExcepcionValoresEsperadosSalida.class, MENSAJE_NO_HAY_CODIGO);	
 		
 	}
 	
 	@Test
 	public void validarArgumentoFechaIngresoRespuestaSalida() {
 		//Arrange
-		salidaHistorialAlmacenamiento.conFechaIngreso(null);
+		salidaHistorialAlmacenamientoTestBuilder.conFechaIngreso(null);
 		
-		//Act
-		try {
-			salidaHistorialAlmacenamiento.build();
-		}catch (Exception e) {
-			assertEquals(MENSAJE_NO_HAY_FECHAINGRESO, e.getMessage());
-		}
+		//Act //Assert
+		PruebaBase.asserThrow(() -> salidaHistorialAlmacenamientoTestBuilder.build(), ExcepcionValoresEsperadosSalida.class, MENSAJE_NO_HAY_FECHAINGRESO);
 	}
 	
 	
 	@Test
 	public void validarArgumentoFechaSalidaVaciaRespuestaSalida() {
 		//Arrange
-		salidaHistorialAlmacenamiento.conFechaSalida(null);
+		salidaHistorialAlmacenamientoTestBuilder.conFechaSalida(null);
 		
-		//Act
-		try {
-			salidaHistorialAlmacenamiento.build();
-		}catch (Exception e) {
-			assertEquals(MENSAJE_NO_HAY_FECHASALIDA, e.getMessage());
-		}
+		//Act //Assert
+		PruebaBase.asserThrow(() -> salidaHistorialAlmacenamientoTestBuilder.build(), ExcepcionValoresEsperadosSalida.class, MENSAJE_NO_HAY_FECHASALIDA);
 	}
 	
 	@Test
 	public void validarArgumentoPagoVacioRespuestaSalida() {
 		//Arrange
-		salidaHistorialAlmacenamiento.conPago(0);		
-		//Act
-		try {
-			salidaHistorialAlmacenamiento.build();
-		}catch (Exception e) {
-			assertEquals(MENSAJE_NO_GENERO_PAGO, e.getMessage());
-		}
+		salidaHistorialAlmacenamientoTestBuilder.conPago(0);		
+		//Act //Assert
+		PruebaBase.asserThrow(() -> salidaHistorialAlmacenamientoTestBuilder.build(), ExcepcionValoresEsperadosSalida.class, MENSAJE_NO_GENERO_PAGO);
 	}
 
 }

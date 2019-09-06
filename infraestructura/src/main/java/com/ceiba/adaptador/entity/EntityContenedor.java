@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.ceiba.modelo.Perecedero;
 
 @Entity
 @Table(name = "contenedor")
@@ -12,15 +11,15 @@ public class EntityContenedor {
 	
 	@Id
 	private String codigo;	
-	private String mercancia;
-	private Perecedero perecedero;
+	private String mercancia;	
+	private boolean perecedero;
 	private String color;
 	private String peso;
 	
 	public EntityContenedor() {
 	}
 
-	public EntityContenedor(String codigo, String mercancia, Perecedero perecedero, String color, String peso) {
+	public EntityContenedor(String codigo, String mercancia, boolean perecedero, String color, String peso) {
 		this.codigo = codigo;
 		this.mercancia = mercancia;
 		this.perecedero = perecedero;
@@ -44,11 +43,11 @@ public class EntityContenedor {
 		this.mercancia = mercancia;
 	}
 
-	public Perecedero getPerecedero() {
+	public boolean getPerecedero() {
 		return perecedero;
 	}
 
-	public void setPerecedero(Perecedero perecedero) {
+	public void setPerecedero(boolean perecedero) {
 		this.perecedero = perecedero;
 	}
 

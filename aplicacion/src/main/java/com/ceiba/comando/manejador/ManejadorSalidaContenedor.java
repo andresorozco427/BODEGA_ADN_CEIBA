@@ -5,20 +5,20 @@ import org.springframework.stereotype.Component;
 
 import com.ceiba.modelo.HistorialAlmacenamiento;
 import com.ceiba.modelo.SalidaHistorialAlmacenamiento;
-import com.ceiba.servicio.ServicioContenedorSalida;
+import com.ceiba.servicio.ServicioSalidaContenedor;
 
 @Component
 public class ManejadorSalidaContenedor {
 	
-	private final ServicioContenedorSalida servicioContenedorSalida;
+	private final ServicioSalidaContenedor servicioContenedorSalida;
 
 	@Autowired
-	public ManejadorSalidaContenedor(ServicioContenedorSalida servicioContenedorSalida) {
+	public ManejadorSalidaContenedor(ServicioSalidaContenedor servicioContenedorSalida) {
 		this.servicioContenedorSalida = servicioContenedorSalida;
 	}
 	
 	public SalidaHistorialAlmacenamiento retirarAlmacenamientoContenedor(HistorialAlmacenamiento historial) {
-		return this.servicioContenedorSalida.ejecutarSalidaContenedor(historial);
+		return this.servicioContenedorSalida.ejecutar(historial);
 	}
 	
 	

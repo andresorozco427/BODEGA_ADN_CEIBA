@@ -36,31 +36,23 @@ public class SalidaHistorialAlmacenamiento {
 		this.fechaSalida = fechaSalida;
 		this.pago = pago;
 	}
-	
+
 	public String getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
+
 	public LocalDateTime getFechaIngreso() {
 		return fechaIngreso;
 	}
-	public void setFechaIngreso(LocalDateTime fechaIngreso) {
-		this.fechaIngreso = fechaIngreso;
-	}
+
 	public LocalDateTime getFechaSalida() {
 		return fechaSalida;
 	}
-	public void setFechaSalida(LocalDateTime fechaSalida) {
-		this.fechaSalida = fechaSalida;
-	}
+
 	public float getPago() {
 		return pago;
 	}
-	public void setPago(float pago) {
-		this.pago = pago;
-	}
+	
 	
 	
 }

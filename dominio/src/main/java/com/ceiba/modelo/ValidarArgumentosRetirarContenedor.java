@@ -25,8 +25,8 @@ public final class ValidarArgumentosRetirarContenedor{
 		}
 	}
 	
-	public static void validarArgumentoPago(Object pago, String mensaje) {
-		if(pago == null) {
+	public static void validarArgumentoPago(float pago, String mensaje) {
+		if(pago == 0) {
 			throw new ExcepcionValoresEsperadosSalida(mensaje);
 		}
 	}

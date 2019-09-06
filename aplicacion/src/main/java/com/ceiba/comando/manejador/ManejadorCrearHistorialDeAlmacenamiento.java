@@ -5,22 +5,23 @@ import org.springframework.stereotype.Component;
 
 import com.ceiba.comando.ComandoContenedor;
 import com.ceiba.modelo.Contenedor;
-import com.ceiba.servicio.ServicioHistorialAlmacenamiento;
+import com.ceiba.servicio.ServicioEntradaContenedor;
 
 @Component
-public class ManejadorCrearHistorialDeAlmacenamiento {
+public class ManejadorCrearHistorialDeAlmacenamiento {	
 	
-	private final ServicioHistorialAlmacenamiento servicioHistorialAlmacenamiento;
+	private ServicioEntradaContenedor servicioHistorialAlmacenamiento;
 
 	@Autowired
-	public ManejadorCrearHistorialDeAlmacenamiento(ServicioHistorialAlmacenamiento servicioHistorialAlmacenamiento) {
+	public ManejadorCrearHistorialDeAlmacenamiento(ServicioEntradaContenedor servicioHistorialAlmacenamiento) {
 		this.servicioHistorialAlmacenamiento = servicioHistorialAlmacenamiento;
 	}
 	
-	public void ejecutarAlmacenamiento(ComandoContenedor comandoContenedor) {
-		this.servicioHistorialAlmacenamiento.ejecutarAlmacenamientoContenedor(new Contenedor(comandoContenedor.getCodigo(), comandoContenedor.getMercancia(),
-		comandoContenedor.getPerecedero(), comandoContenedor.getColor(), comandoContenedor.getPeso()));
-	}
-	
+	public void ejecutar(ComandoContenedor comandoContenedor) {
+		Contenedor contenedor = new Contenedor(comandoContenedor.getCodigo(), comandoContenedor.getMercancia(), comandoContenedor.getPerecedero()
+				, comandoContenedor.getColor(),  comandoContenedor.getPeso());
+		
+		this.servicioHistorialAlmacenamiento.ejecutar(contenedor);
+	}	
 
 }

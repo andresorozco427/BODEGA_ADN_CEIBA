@@ -5,7 +5,7 @@ import java.util.List;
 import com.ceiba.modelo.HistorialAlmacenamiento;
 import com.ceiba.puerto.repositorio.RepositorioHistorialAlmacenamiento;
 
-public class ServicioConsultaContenedores {
+public class ServicioConsultaContenedores{
 	
 	private RepositorioHistorialAlmacenamiento repositorioHistorialAlmacenamiento;
 
@@ -23,6 +23,7 @@ public class ServicioConsultaContenedores {
 	
 	public boolean consultarSalidaContenedor(String codigo) {
 		return this.repositorioHistorialAlmacenamiento.consultarSalidaContenedor(codigo);
-	}
+	}	
+	
 	
 }

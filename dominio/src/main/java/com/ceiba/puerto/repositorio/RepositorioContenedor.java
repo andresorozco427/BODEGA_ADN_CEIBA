@@ -11,8 +11,6 @@ import com.ceiba.modelo.Contenedor;
  * @version 1.0
  *
  */
-public interface RepositorioContenedor {
-	
-	public Contenedor crear(Contenedor contenedor);
-
+public interface RepositorioContenedor {	
+	  public void crear(Contenedor contenedor);
 }

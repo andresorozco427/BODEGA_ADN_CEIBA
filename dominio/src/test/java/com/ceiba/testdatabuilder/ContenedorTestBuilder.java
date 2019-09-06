@@ -1,20 +1,19 @@
 package com.ceiba.testdatabuilder;
 
 import com.ceiba.modelo.Contenedor;
-import com.ceiba.modelo.Perecedero;
 
 public class ContenedorTestBuilder {
 
 	private String codigo;
 	private String mercancia;
-	private Perecedero perecedero;
+	private boolean perecedero;
 	private String color;
 	private String peso;
 	
 	public ContenedorTestBuilder() {
 		this.codigo = "AR0102";
 		this.mercancia = "tomates";
-		this.perecedero = Perecedero.SI;
+		this.perecedero = true;
 		this.color = "blanco";
 		this.peso = "500kg";
 	}
@@ -29,7 +28,7 @@ public class ContenedorTestBuilder {
 		return this;
 	}
 	
-	public ContenedorTestBuilder conEsPerecedero(Perecedero perecedero) {
+	public ContenedorTestBuilder conEsPerecedero(boolean perecedero) {
 		this.perecedero = perecedero;
 		return this;
 	}
