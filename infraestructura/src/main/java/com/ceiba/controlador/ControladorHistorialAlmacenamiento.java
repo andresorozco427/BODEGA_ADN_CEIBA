@@ -21,7 +21,7 @@ import com.ceiba.modelo.SalidaHistorialAlmacenamiento;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("api/Bodega")
+@RequestMapping("api/bodega")
 public class ControladorHistorialAlmacenamiento {
 
 	private final ManejadorCrearHistorialDeAlmacenamiento manejadorCrearHistorialDeAlmacenamiento;
