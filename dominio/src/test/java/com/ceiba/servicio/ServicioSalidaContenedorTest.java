@@ -29,11 +29,7 @@ public class ServicioSalidaContenedorTest {
 	public void setUp() {
 		this.repositorioHistorialAlmacenamiento = mock(RepositorioHistorialAlmacenamiento.class);
 	}
-	
-	@Test
-	public void validarPaisesConValorAgregado() {
-		
-	}
+
 	
 	@Test
 	public void calcularPagoDeUnDiaContenedorSinRestricciones() {
@@ -141,29 +137,6 @@ public class ServicioSalidaContenedorTest {
 		float valorTotalAPagar = servicioContenedorSalida.calcularPagoSegunContenedor(fechaIngreso, fechaSalida, contenedor.getCodigo());
 		//Assert
 		assertEquals(valorTotalAPagar, 380000, 0.0001);
-	}
-	
-	@Test
-	public void validarCambioDeBodegaContenedorPerecedero() {
-		//Arrange
-		LocalDateTime fechaIngreso = LocalDateTime.now();
-		LocalDateTime fechaSalida = LocalDateTime.now().plusDays(1).minusMinutes(4);
-		Contenedor contenedor = new ContenedorTestBuilder().conEsPerecedero(true).build();
-		
-		BodegaAlmacenajeDirector director = new BodegaAlmacenajeDirector();
-		director.setBodegaBuilder(new BodegaContenedoresPerecederos());
-		director.construirBodega();
-		BodegaAlmacenaje bodegaAlmacenaje = director.obtenerBodegaAlmacenaje();	
-		
-		HistorialAlmacenamiento historialAlmacenamiento = new HistorialAlmacenamiento(fechaIngreso, fechaSalida, contenedor, bodegaAlmacenaje, 0);
-		
-		List<HistorialAlmacenamiento> historial = new ArrayList<>();
-		
-		historial.add(historialAlmacenamiento);
-		
-		ServicioSalidaContenedor servicioSalidaContenedor = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento);
-		//Act
-		when(servicioSalidaContenedor.consultarEstadiaContenedorPerecedero(historial)).thenReturn(historialAlmacenamiento);
 	}
 	
 	
