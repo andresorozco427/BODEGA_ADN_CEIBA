@@ -5,6 +5,8 @@ package com.ceiba.modelo;
 
 import java.time.LocalDateTime;
 
+import com.ceiba.modelo.bodega.BodegaAlmacenaje;
+
 /**
  * Clase la cual representa nuestro objeto de historial de almacenamiento del contenedor
  * @author andres.orozco
@@ -17,17 +19,19 @@ public class HistorialAlmacenamiento {
 	private LocalDateTime fechaIngreso;
 	private LocalDateTime fechaSalida;
 	private Contenedor contenedor;
+	private BodegaAlmacenaje bodegaAlmacenaje;
 	private float pago;		
 
 
 	public HistorialAlmacenamiento() {
 	}
 	
-	public HistorialAlmacenamiento(LocalDateTime fechaIngreso, LocalDateTime fechaSalida, Contenedor contenedor,
+	public HistorialAlmacenamiento(LocalDateTime fechaIngreso, LocalDateTime fechaSalida, Contenedor contenedor,BodegaAlmacenaje bodegaAlmacenaje,
 			float pago) {
 		this.fechaIngreso = fechaIngreso;
 		this.fechaSalida = fechaSalida;
 		this.contenedor = contenedor;
+		this.bodegaAlmacenaje = bodegaAlmacenaje;
 		this.pago = pago;
 	}
 	
@@ -55,6 +59,14 @@ public class HistorialAlmacenamiento {
 	}
 	public void setPago(float pago) {
 		this.pago = pago;
+	}
+
+	public BodegaAlmacenaje getBodegaAlmacenaje() {
+		return bodegaAlmacenaje;
+	}
+
+	public void setBodegaAlmacenaje(BodegaAlmacenaje bodegaAlmacenaje) {
+		this.bodegaAlmacenaje = bodegaAlmacenaje;
 	}
 	
 	

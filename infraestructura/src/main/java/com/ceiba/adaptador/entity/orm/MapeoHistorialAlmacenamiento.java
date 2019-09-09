@@ -18,7 +18,8 @@ public class MapeoHistorialAlmacenamiento {
 		
 		if(entityHistorialAlmacenamiento != null) {
 			historialAlmacenamiento = new HistorialAlmacenamiento(entityHistorialAlmacenamiento.getFechaIngreso(), entityHistorialAlmacenamiento.getFechaSalida(),
-					MapeoContenedor.convertirAModelo(entityHistorialAlmacenamiento.getContenedor()), entityHistorialAlmacenamiento.getPago());
+					MapeoContenedor.convertirAModelo(entityHistorialAlmacenamiento.getContenedor()), MapeoBodega.convertirAModelo(entityHistorialAlmacenamiento.getBodega()), 
+					entityHistorialAlmacenamiento.getPago());
 		}
 		return historialAlmacenamiento;
 	}	
@@ -31,6 +32,7 @@ public class MapeoHistorialAlmacenamiento {
 			entityHistorialAlmacenamiento.setFechaIngreso(historialAlmacenamiento.getFechaIngreso());
 			entityHistorialAlmacenamiento.setFechaSalida(historialAlmacenamiento.getFechaSalida());
 			entityHistorialAlmacenamiento.setPago(historialAlmacenamiento.getPago());
+			entityHistorialAlmacenamiento.setBodega(MapeoBodega.convertirAEntidad(historialAlmacenamiento.getBodegaAlmacenaje()));
 			entityHistorialAlmacenamiento.setContenedor(MapeoContenedor.convertirAEntidad(historialAlmacenamiento.getContenedor()));
 		}
 		return entityHistorialAlmacenamiento;

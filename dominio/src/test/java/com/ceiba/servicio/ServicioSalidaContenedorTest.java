@@ -2,14 +2,20 @@ package com.ceiba.servicio;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.ceiba.modelo.Contenedor;
-import com.ceiba.puerto.repositorio.RepositorioContenedor;
+import com.ceiba.modelo.HistorialAlmacenamiento;
+import com.ceiba.modelo.bodega.BodegaAlmacenaje;
+import com.ceiba.modelo.bodega.BodegaAlmacenajeDirector;
+import com.ceiba.modelo.bodega.BodegaContenedoresPerecederos;
 import com.ceiba.puerto.repositorio.RepositorioHistorialAlmacenamiento;
 import com.ceiba.testdatabuilder.ContenedorTestBuilder;
 
@@ -18,14 +24,16 @@ public class ServicioSalidaContenedorTest {
 	private static final String CODIGO_CON_RESTRICCIONES = "BR3432";
 	
 	private RepositorioHistorialAlmacenamiento repositorioHistorialAlmacenamiento;
-	private RepositorioContenedor repositorioContenedor;
 	
 	@Before
 	public void setUp() {
 		this.repositorioHistorialAlmacenamiento = mock(RepositorioHistorialAlmacenamiento.class);
-		this.repositorioContenedor = mock(RepositorioContenedor.class);
 	}
 	
+	@Test
+	public void validarPaisesConValorAgregado() {
+		
+	}
 	
 	@Test
 	public void calcularPagoDeUnDiaContenedorSinRestricciones() {
@@ -134,4 +142,29 @@ public class ServicioSalidaContenedorTest {
 		//Assert
 		assertEquals(valorTotalAPagar, 380000, 0.0001);
 	}
+	
+	@Test
+	public void validarCambioDeBodegaContenedorPerecedero() {
+		//Arrange
+		LocalDateTime fechaIngreso = LocalDateTime.now();
+		LocalDateTime fechaSalida = LocalDateTime.now().plusDays(1).minusMinutes(4);
+		Contenedor contenedor = new ContenedorTestBuilder().conEsPerecedero(true).build();
+		
+		BodegaAlmacenajeDirector director = new BodegaAlmacenajeDirector();
+		director.setBodegaBuilder(new BodegaContenedoresPerecederos());
+		director.construirBodega();
+		BodegaAlmacenaje bodegaAlmacenaje = director.obtenerBodegaAlmacenaje();	
+		
+		HistorialAlmacenamiento historialAlmacenamiento = new HistorialAlmacenamiento(fechaIngreso, fechaSalida, contenedor, bodegaAlmacenaje, 0);
+		
+		List<HistorialAlmacenamiento> historial = new ArrayList<>();
+		
+		historial.add(historialAlmacenamiento);
+		
+		ServicioSalidaContenedor servicioSalidaContenedor = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento);
+		//Act
+		when(servicioSalidaContenedor.consultarEstadiaContenedorPerecedero(historial)).thenReturn(historialAlmacenamiento);
+	}
+	
+	
 }

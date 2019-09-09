@@ -10,12 +10,13 @@ import java.util.concurrent.TimeUnit;
 import com.ceiba.modelo.HistorialAlmacenamiento;
 import com.ceiba.modelo.SalidaHistorialAlmacenamiento;
 import com.ceiba.modelo.bodega.BodegaAlmacenaje;
+import com.ceiba.modelo.bodega.BodegaAlmacenajeDirector;
 import com.ceiba.modelo.bodega.BodegaContenedoresPerecederosCaducados;
 import com.ceiba.modelo.pago.TemplatePago;
 import com.ceiba.modelo.pago.CalcularPago;
 import com.ceiba.puerto.repositorio.RepositorioHistorialAlmacenamiento;
 
-public class ServicioSalidaContenedor implements Runnable{
+public class ServicioSalidaContenedor{
 	private static final int HORAS_DIA = 24;
 
 	private RepositorioHistorialAlmacenamiento repositorioHistorialAlmacenamiento;
@@ -41,14 +42,22 @@ public class ServicioSalidaContenedor implements Runnable{
 		return shapePago.calcularPago(fechaIngreso, fechaSalida);
 	}
 
-	public Runnable consultarEstadiaContenedorPerecedero(Iterable<HistorialAlmacenamiento> listaContenedoresAlmacenados) {
+	public HistorialAlmacenamiento consultarEstadiaContenedorPerecedero(Iterable<HistorialAlmacenamiento> listaContenedoresAlmacenados) {
+		HistorialAlmacenamiento historial = null;
 		for (HistorialAlmacenamiento historialAlmacenamiento : listaContenedoresAlmacenados) {
 			if(cantidadDeHorasEnBodega(historialAlmacenamiento.getFechaIngreso()) > HORAS_DIA) {
-				BodegaAlmacenaje bodegaAlmacenaje = new BodegaContenedoresPerecederosCaducados("", historialAlmacenamiento, "");
-				this.repositorioHistorialAlmacenamiento.almacenarHistorialEnBodega(bodegaAlmacenaje);
+				BodegaAlmacenajeDirector director = new  BodegaAlmacenajeDirector();
+				director.setBodegaBuilder(new BodegaContenedoresPerecederosCaducados());
+				director.construirBodega();				
+				BodegaAlmacenaje bodegaAlmacenaje = director.obtenerBodegaAlmacenaje();
+				historialAlmacenamiento.setBodegaAlmacenaje(bodegaAlmacenaje);
+				historial = historialAlmacenamiento;
+				
+				this.repositorioHistorialAlmacenamiento.actualizarHistorialAlmacenamiento(historialAlmacenamiento);
+				
 			}
 		}
-		return null;
+		return historial;
 	}
 	
 	private int cantidadDeHorasEnBodega(LocalDateTime fechaIngreso) {
@@ -75,10 +84,10 @@ public class ServicioSalidaContenedor implements Runnable{
 		return horas;
 	}
 
-	@Override
-	public void run() {
-		ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
-		List<HistorialAlmacenamiento> historialAlmacenamientos = this.repositorioHistorialAlmacenamiento.consultarContenedoresAlmacenadosEnLaBodega();
-		scheduledExecutorService.schedule(consultarEstadiaContenedorPerecedero(historialAlmacenamientos), 1, TimeUnit.SECONDS);
-	}
+//	@Override
+//	public void run() {
+//		ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+//		List<HistorialAlmacenamiento> historialAlmacenamientos = this.repositorioHistorialAlmacenamiento.consultarContenedoresAlmacenadosEnLaBodega();
+//		scheduledExecutorService.schedule(consultarEstadiaContenedorPerecedero(historialAlmacenamientos), 1, TimeUnit.SECONDS);
+//	}
 }

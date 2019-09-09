@@ -1,24 +1,36 @@
 package com.ceiba.modelo.bodega;
 
-import com.ceiba.modelo.HistorialAlmacenamiento;
-
-public class BodegaContenedoresPerecederosCaducados extends BodegaAlmacenaje{
-	private static final String TIPO_CONTENEDORES = "Contenedor perecedero caducados";
+public class BodegaContenedoresPerecederosCaducados extends BodegaAlmacenajeBuilder{
 	private static final String CODIGO = "BD003";
+	private static final String TIPO_CONTENIDO_ALMACENAJE = "Contenido perecedero caducado";
+	private static final String DIRECCION = "Cra 152 #55-34";
+	private static final String TELEFONO = "4387379";
+	private static final String NOMBRE = "Bodega ceiba software s.a.s PC";
 
-	public BodegaContenedoresPerecederosCaducados(String codigo, HistorialAlmacenamiento historialAlmacenamiento,
-			String tipoContenedores) {
-		super(codigo, historialAlmacenamiento, tipoContenedores);
+	@Override
+	public void buildCodigo() {
+		bodegaAlmacenamiento.setCodigo(CODIGO);
+	}
+	
+	@Override
+	public void buildTipoContenidoAlamcenaje() {
+		bodegaAlmacenamiento.setTipoContenedores(TIPO_CONTENIDO_ALMACENAJE);		
 	}
 
 	@Override
-	public String tipoContenidoContenedor() {
-		return TIPO_CONTENEDORES;
+	public void buildDireccion() {
+		bodegaAlmacenamiento.setDireccion(DIRECCION);
+		
 	}
 
 	@Override
-	public String codigoBodega() {
-		return CODIGO;
+	public void buildTelefono() {
+		bodegaAlmacenamiento.setTelefono(TELEFONO);
 	}
 
+	@Override
+	public void buildNombre() {
+		bodegaAlmacenamiento.setNombre(NOMBRE);
+		
+	}
 }

@@ -9,13 +9,12 @@ import com.ceiba.adaptador.entity.EntityHistorialAlmacenamiento;
 import com.ceiba.adaptador.entity.orm.MapeoHistorialAlmacenamiento;
 import com.ceiba.modelo.HistorialAlmacenamiento;
 import com.ceiba.modelo.SalidaHistorialAlmacenamiento;
-import com.ceiba.modelo.bodega.BodegaAlmacenaje;
 import com.ceiba.puerto.repositorio.RepositorioHistorialAlmacenamiento;
 
 @Repository
 public class RepositorioHistorialAlmacenamientoContenedorImpl implements RepositorioHistorialAlmacenamiento{
 
-	private final CrudHistorialAlmacenamientoRepository crudHistorialAlmacenamientoRepository;	
+	private final CrudHistorialAlmacenamientoRepository crudHistorialAlmacenamientoRepository;
 	
 	public RepositorioHistorialAlmacenamientoContenedorImpl(CrudHistorialAlmacenamientoRepository crudHistorialAlmacenamientoRepository) {
 		this.crudHistorialAlmacenamientoRepository = crudHistorialAlmacenamientoRepository;
@@ -36,12 +35,13 @@ public class RepositorioHistorialAlmacenamientoContenedorImpl implements Reposit
 	@Override
 	public int cantidadContenedores(boolean contenedorPerecedero) {
 		int cantidadContenedores = 0;
-		Iterable<EntityHistorialAlmacenamiento> listaContenedores = this.crudHistorialAlmacenamientoRepository.findByContenedorPerecedero(contenedorPerecedero);
+		List<EntityHistorialAlmacenamiento> listaContenedores = (List<EntityHistorialAlmacenamiento>) this.crudHistorialAlmacenamientoRepository.findByContenedorPerecedero(contenedorPerecedero);
 		for (EntityHistorialAlmacenamiento entityHistorialAlmacenamiento : listaContenedores) {			
 			if(entityHistorialAlmacenamiento.getFechaSalida() == null) {
 				cantidadContenedores++;
 			}
-		}
+		}		
+		
 		return cantidadContenedores;
 	}
 
@@ -70,12 +70,6 @@ public class RepositorioHistorialAlmacenamientoContenedorImpl implements Reposit
 	@Override
 	public boolean consultarSalidaContenedor(String codigo) {
 		return false;
-	}
-
-	@Override
-	public void almacenarHistorialEnBodega(BodegaAlmacenaje bodegaAlmacenaje) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

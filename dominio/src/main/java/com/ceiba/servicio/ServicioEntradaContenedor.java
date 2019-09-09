@@ -12,7 +12,10 @@ import com.ceiba.excepcion.ExcepcionHistorialYaExistente;
 import com.ceiba.modelo.Contenedor;
 import com.ceiba.modelo.HistorialAlmacenamiento;
 import com.ceiba.modelo.bodega.BodegaAlmacenaje;
-import com.ceiba.modelo.bodega.BodegaAlmacenajeFactory;
+import com.ceiba.modelo.bodega.BodegaAlmacenajeDirector;
+import com.ceiba.modelo.bodega.BodegaContenedoresNoPerecederos;
+import com.ceiba.modelo.bodega.BodegaContenedoresPerecederos;
+import com.ceiba.puerto.repositorio.RepositorioBodega;
 import com.ceiba.puerto.repositorio.RepositorioContenedor;
 import com.ceiba.puerto.repositorio.RepositorioHistorialAlmacenamiento;
 
@@ -33,26 +36,45 @@ public class ServicioEntradaContenedor{
 
 	private  RepositorioHistorialAlmacenamiento repositorioHistorialAlmacenamiento;
 	private RepositorioContenedor repositorioContenedor;
+	private RepositorioBodega repositorioBodega;
 	
 	public ServicioEntradaContenedor(RepositorioHistorialAlmacenamiento repositorioHistorialAlmacenamiento,
-			RepositorioContenedor repositorioContenedor) {
+			RepositorioContenedor repositorioContenedor, RepositorioBodega repositorioBodega) {
 		this.repositorioHistorialAlmacenamiento = repositorioHistorialAlmacenamiento;
 		this.repositorioContenedor = repositorioContenedor;
+		this.repositorioBodega = repositorioBodega;
 	}
 	
 	public void ejecutar(Contenedor contenedor) {
 		int totalCobrar = 0;
 		LocalDateTime fechaIngreso = LocalDateTime.now();
 		LocalDateTime fechaSalida = null;		
-		HistorialAlmacenamiento historialAlmacenamiento = new HistorialAlmacenamiento(fechaIngreso, fechaSalida, contenedor, totalCobrar);
+		BodegaAlmacenaje bodegaAlmacenaje = creacionDeBodegaSegunTipoContenidoContenedor(contenedor.getPerecedero());
+		
+		HistorialAlmacenamiento historialAlmacenamiento = new HistorialAlmacenamiento(fechaIngreso, fechaSalida, contenedor,bodegaAlmacenaje, totalCobrar);
 	
 		validarContenedorAlmacenado(contenedor.getCodigo());
 		validarCupos(historialAlmacenamiento);
 		validarCodigoParaDiasHabiles(contenedor.getCodigo(), fechaIngreso.getDayOfWeek());		
+		
+		this.repositorioBodega.crear(bodegaAlmacenaje);
 		this.repositorioContenedor.crear(contenedor);
 		this.repositorioHistorialAlmacenamiento.crearHistorial(historialAlmacenamiento);
 	}
 	
+	public BodegaAlmacenaje creacionDeBodegaSegunTipoContenidoContenedor(boolean perecedero) {
+		BodegaAlmacenajeDirector director = new BodegaAlmacenajeDirector();
+		if(perecedero) {
+			director.setBodegaBuilder(new BodegaContenedoresPerecederos());
+			director.construirBodega();
+		}else{
+			director.setBodegaBuilder(new BodegaContenedoresNoPerecederos());
+			director.construirBodega();
+		}	
+			
+		return director.obtenerBodegaAlmacenaje();
+	}
+
 	public void validarCodigoParaDiasHabiles(String codigo, DayOfWeek dayOfWeek) {
 		if(validarDosPrimerasLetras(codigo) && hoyEsSabadoODomingo(dayOfWeek)) {
 			throw new ExcepcionDiaNoHabil(MENSAJE_DIA_NO_HABIL_PARA_ALMACENAMIENTO);

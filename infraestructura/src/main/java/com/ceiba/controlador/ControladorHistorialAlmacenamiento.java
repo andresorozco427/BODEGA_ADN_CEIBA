@@ -50,7 +50,7 @@ public class ControladorHistorialAlmacenamiento {
 	}
 
 	@PutMapping("/SalidaContenedor/{codigo}")
-	public SalidaHistorialAlmacenamiento SalidaContenedor(@PathVariable String codigo) {
+	public SalidaHistorialAlmacenamiento salidaContenedor(@PathVariable String codigo) {
 		HistorialAlmacenamiento historialAlmacenamiento;
 		historialAlmacenamiento = this.manejadorConsultasContenedor.consultarHistorialAlmacenamiento(codigo);
 		return this.manejadorSalidaContenedor.retirarAlmacenamientoContenedor(historialAlmacenamiento);

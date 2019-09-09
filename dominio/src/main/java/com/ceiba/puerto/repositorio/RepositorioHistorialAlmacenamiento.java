@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.ceiba.modelo.HistorialAlmacenamiento;
 import com.ceiba.modelo.SalidaHistorialAlmacenamiento;
-import com.ceiba.modelo.bodega.BodegaAlmacenaje;
 
 /**
  * La cual nos permite la creacion de un historial de almacenamiento de un contenedor
@@ -17,8 +16,6 @@ import com.ceiba.modelo.bodega.BodegaAlmacenaje;
 public interface RepositorioHistorialAlmacenamiento {
 	
 	public void crearHistorial(HistorialAlmacenamiento historialAlmacenamiento);
-	
-	public void almacenarHistorialEnBodega(BodegaAlmacenaje bodegaAlmacenaje);
 	
 	public HistorialAlmacenamiento consultarHistorialAlmacenamiento(String codigo);
 	

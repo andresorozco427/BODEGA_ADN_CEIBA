@@ -21,18 +21,22 @@ public class EntityHistorialAlmacenamiento {
 	private LocalDateTime fechaSalida;	
 	private float pago;	
 	@ManyToOne
-	@JoinColumn(name = "codigo", referencedColumnName = "codigo")
+	@JoinColumn(name = "contenedor_id", referencedColumnName = "codigo")
 	private EntityContenedor contenedor;
+	@ManyToOne
+	@JoinColumn(name = "bodega_id", referencedColumnName = "codigo")
+	private EntityBodega bodega;
 	
 	public EntityHistorialAlmacenamiento() {
 	}
 	
 	public EntityHistorialAlmacenamiento(LocalDateTime fechaIngreso, LocalDateTime fechaSalida, float pago,
-			EntityContenedor contenedor) {
+			EntityContenedor contenedor, EntityBodega bodega) {
 		this.fechaIngreso = fechaIngreso;
 		this.fechaSalida = fechaSalida;
 		this.pago = pago;
 		this.contenedor = contenedor;
+		this.bodega = bodega;
 	}
 
 	public Long getId() {
@@ -74,7 +78,14 @@ public class EntityHistorialAlmacenamiento {
 	public void setContenedor(EntityContenedor contenedor) {
 		this.contenedor = contenedor;
 	}
-	
+
+	public EntityBodega getBodega() {
+		return bodega;
+	}
+
+	public void setBodega(EntityBodega bodega) {
+		this.bodega = bodega;
+	}
 	
 	
 	
