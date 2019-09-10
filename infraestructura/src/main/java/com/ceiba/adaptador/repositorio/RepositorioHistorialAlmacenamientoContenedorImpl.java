@@ -52,7 +52,7 @@ public class RepositorioHistorialAlmacenamientoContenedorImpl implements Reposit
 		entityHistorialAlmacenamiento.setPago(historial.getPago());
 		this.crudHistorialAlmacenamientoRepository.save(entityHistorialAlmacenamiento);
 		
-		return new SalidaHistorialAlmacenamiento(historial.getContenedor().getCodigo(), historial.getFechaIngreso(), historial.getFechaSalida(), historial.getPago());
+		return new SalidaHistorialAlmacenamiento(historial.getContenedor().getCodigo(), historial.getFechaIngreso(),historial.getFechaSalida(), historial.getPago());
 	}
 
 	@Override
@@ -68,8 +68,16 @@ public class RepositorioHistorialAlmacenamientoContenedorImpl implements Reposit
 	}
 
 	@Override
-	public boolean consultarSalidaContenedor(String codigo) {
-		return false;
+	public boolean elContenedorSeEncuentraAlmacenado(String codigo) {
+		EntityHistorialAlmacenamiento historialAlmacenamiento = this.crudHistorialAlmacenamientoRepository.findByContenedorCodigo(codigo);
+		return historialAlmacenamiento.getFechaSalida() != null;
 	}
+
+//	@Override
+//	public List<HistorialAlmacenamiento> consultaHistorialAlmacenamientoContenedoresPerecederos() {
+//		Iterable<EntityHistorialAlmacenamiento> listaContenedores = this.crudHistorialAlmacenamientoRepository.findAllByContenedorPerecedero();
+//		return MapeoHistorialAlmacenamiento.convertirAModelo(listaContenedores);
+//	}
+
 
 }

@@ -20,8 +20,7 @@ public class BodegaAlmacenajeDirector {
 		bodegaAlmacenajeBuilder.buildTipoContenidoAlamcenaje();
 		bodegaAlmacenajeBuilder.buildNombre();
 		bodegaAlmacenajeBuilder.buildDireccion();
-		bodegaAlmacenajeBuilder.buildTelefono();
-		
+		bodegaAlmacenajeBuilder.buildTelefono();	
 		
 	}
 }

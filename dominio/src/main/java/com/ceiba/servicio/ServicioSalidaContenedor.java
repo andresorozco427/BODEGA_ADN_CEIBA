@@ -1,7 +1,7 @@
 package com.ceiba.servicio;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -16,7 +16,7 @@ import com.ceiba.modelo.pago.TemplatePago;
 import com.ceiba.modelo.pago.CalcularPago;
 import com.ceiba.puerto.repositorio.RepositorioHistorialAlmacenamiento;
 
-public class ServicioSalidaContenedor{
+public class ServicioSalidaContenedor implements Runnable{
 	private static final int HORAS_DIA = 24;
 
 	private RepositorioHistorialAlmacenamiento repositorioHistorialAlmacenamiento;
@@ -28,7 +28,7 @@ public class ServicioSalidaContenedor{
 	public SalidaHistorialAlmacenamiento ejecutar(HistorialAlmacenamiento historial) {
 		LocalDateTime fechaSalida = historial.getFechaSalida();
 		if(fechaSalida == null) {
-			fechaSalida = LocalDateTime.now();
+			fechaSalida = LocalDateTime.now().plusSeconds(1);
 		}
 		float valorDelPago = calcularPagoSegunContenedor(historial.getFechaIngreso(), fechaSalida, historial.getContenedor().getCodigo());
 		historial.setFechaSalida(fechaSalida);
@@ -62,9 +62,8 @@ public class ServicioSalidaContenedor{
 	
 	private int cantidadDeHorasEnBodega(LocalDateTime fechaIngreso) {
 		LocalDateTime fechaActual = LocalDateTime.now();
-		long divisorParaConvertirAsegundos = 1000;
-		long segundos = (fechaActual.atZone(ZoneId.of("America/Bogota")).toInstant().toEpochMilli()
-				- fechaIngreso.atZone(ZoneId.of("America/Bogota")).toInstant().toEpochMilli()) / divisorParaConvertirAsegundos;		
+		Duration duration = Duration.between(fechaActual, fechaIngreso);
+		long segundos = Math.abs(duration.getSeconds());
 		
 		int horas = (int) (segundos / 3600);
 		segundos = segundos % 3600;
@@ -84,10 +83,10 @@ public class ServicioSalidaContenedor{
 		return horas;
 	}
 
-//	@Override
-//	public void run() {
-//		ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
-//		List<HistorialAlmacenamiento> historialAlmacenamientos = this.repositorioHistorialAlmacenamiento.consultarContenedoresAlmacenadosEnLaBodega();
-//		scheduledExecutorService.schedule(consultarEstadiaContenedorPerecedero(historialAlmacenamientos), 1, TimeUnit.SECONDS);
-//	}
+	@Override
+	public void run() {
+		ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+		List<HistorialAlmacenamiento> historialAlmacenamientos = this.repositorioHistorialAlmacenamiento.consultarContenedoresAlmacenadosEnLaBodega();
+		scheduledExecutorService.schedule((Runnable) consultarEstadiaContenedorPerecedero(historialAlmacenamientos), 1, TimeUnit.SECONDS);
+	}
 }

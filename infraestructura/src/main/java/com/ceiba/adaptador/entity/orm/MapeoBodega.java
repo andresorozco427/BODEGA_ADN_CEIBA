@@ -3,8 +3,8 @@ package com.ceiba.adaptador.entity.orm;
 import com.ceiba.adaptador.entity.EntityBodega;
 import com.ceiba.modelo.bodega.BodegaAlmacenaje;
 
-public class MapeoBodega {
-	
+public final class MapeoBodega {
+
 	public static BodegaAlmacenaje convertirAModelo(EntityBodega entityBodega) {
 		BodegaAlmacenaje bodegaAlmacenaje = null;
 		

@@ -3,11 +3,7 @@ package com.ceiba.adaptador.entity.orm;
 import com.ceiba.adaptador.entity.EntityContenedor;
 import com.ceiba.modelo.Contenedor;
 
-public class MapeoContenedor {
-	
-	private MapeoContenedor() {
-		
-	}
+public final class MapeoContenedor {
 	
 	public static Contenedor convertirAModelo(EntityContenedor entitycontenedor) {
 		Contenedor contenedor = null;

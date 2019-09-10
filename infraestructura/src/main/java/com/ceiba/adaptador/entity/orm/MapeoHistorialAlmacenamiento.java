@@ -6,13 +6,8 @@ import java.util.List;
 import com.ceiba.adaptador.entity.EntityHistorialAlmacenamiento;
 import com.ceiba.modelo.HistorialAlmacenamiento;
 
-public class MapeoHistorialAlmacenamiento {
+public final class MapeoHistorialAlmacenamiento {
 	
-	
-	
-	private MapeoHistorialAlmacenamiento() {
-	}
-
 	public static HistorialAlmacenamiento convertirAModelo(EntityHistorialAlmacenamiento entityHistorialAlmacenamiento) {
 		HistorialAlmacenamiento historialAlmacenamiento = null;
 		

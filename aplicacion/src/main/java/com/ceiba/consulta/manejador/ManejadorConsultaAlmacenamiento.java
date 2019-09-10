@@ -16,14 +16,14 @@ public class ManejadorConsultaAlmacenamiento {
 	@Autowired
 	public ManejadorConsultaAlmacenamiento(ServicioConsultaContenedores servicioConsultaContenedores) {
 		this.servicioConsultaContenedores = servicioConsultaContenedores;
-	}
+	}	
 	
 	public List<HistorialAlmacenamiento> listarContenedoresAlmacenados(){
 		return this.servicioConsultaContenedores.listarContenedoresAlmacenados();
 	}
 	
 	public HistorialAlmacenamiento consultarHistorialAlmacenamiento(String codigo) {
-		return this.consultarHistorialAlmacenamiento(codigo);
+		return this.servicioConsultaContenedores.consultarHistorialDeAlmacenamiento(codigo);
 	}
 	
 	

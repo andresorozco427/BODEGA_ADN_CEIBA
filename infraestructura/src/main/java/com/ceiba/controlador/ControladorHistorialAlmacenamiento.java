@@ -27,8 +27,6 @@ public class ControladorHistorialAlmacenamiento {
 	private final ManejadorCrearHistorialDeAlmacenamiento manejadorCrearHistorialDeAlmacenamiento;
 	private final ManejadorSalidaContenedor manejadorSalidaContenedor;
 	private final ManejadorConsultaAlmacenamiento manejadorConsultasContenedor;
-	
-
 	@Autowired
 	public ControladorHistorialAlmacenamiento(
 			ManejadorCrearHistorialDeAlmacenamiento manejadorCrearHistorialDeAlmacenamiento,

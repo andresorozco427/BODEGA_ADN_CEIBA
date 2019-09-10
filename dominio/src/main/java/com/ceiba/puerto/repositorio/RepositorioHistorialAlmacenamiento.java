@@ -22,10 +22,12 @@ public interface RepositorioHistorialAlmacenamiento {
 	public int cantidadContenedores(boolean elContenedorEsPerecedero);
 	
 	public SalidaHistorialAlmacenamiento actualizarHistorialAlmacenamiento(HistorialAlmacenamiento historial);
+	
+//	public List<HistorialAlmacenamiento> consultaHistorialAlmacenamientoContenedoresPerecederos();
 
 	public List<HistorialAlmacenamiento> consultarContenedoresAlmacenadosEnLaBodega();
 
 	public HistorialAlmacenamiento consultarContenedorAlmacenado(String codigo);
 
-	public boolean consultarSalidaContenedor(String codigo);
+	public boolean elContenedorSeEncuentraAlmacenado(String codigo);
 }

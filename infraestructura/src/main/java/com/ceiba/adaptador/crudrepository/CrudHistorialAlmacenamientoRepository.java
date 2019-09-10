@@ -15,6 +15,9 @@ public interface CrudHistorialAlmacenamientoRepository extends CrudRepository<En
 	
 	public Iterable<EntityHistorialAlmacenamiento> findAllByFechaSalidaNotNull();
 	
+//	@Query("SELECT h FROM historial_almacenamiento h LEFT JOIN h.bodega b WHERE b.tipo_contenedores = 'Contenido perecedero'")
+//	public Iterable<EntityHistorialAlmacenamiento> findAllByContenedorPerecedero();
+	
 	public Iterable<EntityHistorialAlmacenamiento> findAll();
 	
 	public void deleteById(Long id);

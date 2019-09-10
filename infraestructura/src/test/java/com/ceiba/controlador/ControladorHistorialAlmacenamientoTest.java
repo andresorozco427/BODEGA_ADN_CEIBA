@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @AutoConfigureMockMvc
 public class ControladorHistorialAlmacenamientoTest {
 	private static final String CODIGO = "TR0978";
+	private static final String CODIGO2 = "PO0712";
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -63,6 +64,22 @@ public class ControladorHistorialAlmacenamientoTest {
 				.andExpect(jsonPath("$[1].contenedor.codigo", is(CODIGO)));
 	}
 
+	@Test
+	public void metodoSalidaContenedor() throws Exception{
+		//Arrange
+		ComandoContenedor comandoContenedor2 = new ComandoContenedorTestBuilder().conCodigo(CODIGO2).build();
+		
+		//Act //Assert
+		mockMvc.perform(MockMvcRequestBuilders
+				.post("/api/bodega/registrarHistorial")
+				.content(asJsonString(comandoContenedor2)).contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+		
+		mockMvc.perform(MockMvcRequestBuilders
+				.put("/api/bodega/SalidaContenedor/" + CODIGO2)
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk());
+	}
 
 	public static String asJsonString(final Object object) throws Exception {
 		try {

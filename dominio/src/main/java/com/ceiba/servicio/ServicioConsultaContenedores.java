@@ -21,8 +21,8 @@ public class ServicioConsultaContenedores{
 		return this.repositorioHistorialAlmacenamiento.consultarContenedoresAlmacenadosEnLaBodega();
 	}
 	
-	public boolean consultarSalidaContenedor(String codigo) {
-		return this.repositorioHistorialAlmacenamiento.consultarSalidaContenedor(codigo);
+	public boolean elContenedorSeEncuentraAlmacenado(String codigo) {
+		return this.repositorioHistorialAlmacenamiento.elContenedorSeEncuentraAlmacenado(codigo);
 	}	
 	
 	
