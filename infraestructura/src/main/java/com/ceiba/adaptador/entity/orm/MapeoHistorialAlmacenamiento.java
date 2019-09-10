@@ -8,6 +8,10 @@ import com.ceiba.modelo.HistorialAlmacenamiento;
 
 public final class MapeoHistorialAlmacenamiento {
 	
+	private MapeoHistorialAlmacenamiento() {
+		
+	}
+	
 	public static HistorialAlmacenamiento convertirAModelo(EntityHistorialAlmacenamiento entityHistorialAlmacenamiento) {
 		HistorialAlmacenamiento historialAlmacenamiento = null;
 		

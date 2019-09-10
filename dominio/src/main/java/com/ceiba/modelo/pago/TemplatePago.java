@@ -5,6 +5,10 @@ public final class TemplatePago {
 	private static final String CODIGO_CONTENEDORES_URUGUAY = "ur";
 	private static final String CODIGO_CONTENEDORES_BOLIVIA = "bo";
 	
+	private TemplatePago() {
+		
+	}
+	
 	public static CalcularPago gestionarPago(String codigo) {
 		if(validarDosPrimerasLetras(codigo)) {
 			return new PagoContenedorConRestricciones();

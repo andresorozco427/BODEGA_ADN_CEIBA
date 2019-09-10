@@ -5,6 +5,10 @@ import com.ceiba.modelo.Contenedor;
 
 public final class MapeoContenedor {
 	
+	private MapeoContenedor() {
+		
+	}
+	
 	public static Contenedor convertirAModelo(EntityContenedor entitycontenedor) {
 		Contenedor contenedor = null;
 		

@@ -4,6 +4,10 @@ import com.ceiba.adaptador.entity.EntityBodega;
 import com.ceiba.modelo.bodega.BodegaAlmacenaje;
 
 public final class MapeoBodega {
+	
+	private MapeoBodega() {
+		
+	}
 
 	public static BodegaAlmacenaje convertirAModelo(EntityBodega entityBodega) {
 		BodegaAlmacenaje bodegaAlmacenaje = null;

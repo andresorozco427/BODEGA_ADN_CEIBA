@@ -1,6 +1,5 @@
 package com.ceiba.modelo.pago;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
@@ -35,8 +34,10 @@ public abstract class CalcularPago {
 	
 	private int horasTranscurridas(LocalDateTime fechaIngreso, LocalDateTime fechaSalida) {
 		
-		Duration duration = Duration.between(fechaIngreso, fechaSalida);
-		long segundos = Math.abs(duration.getSeconds());
+		long divisorParaConvertirAsegundos = 1000;
+		long segundos = (fechaSalida.atZone(ZoneId.of("America/Bogota")).toInstant().toEpochMilli()
+				- fechaIngreso.atZone(ZoneId.of("America/Bogota")).toInstant().toEpochMilli())
+				/ divisorParaConvertirAsegundos;
 		
 		int horas = (int) (segundos / 3600);
 		segundos = segundos % 3600;
