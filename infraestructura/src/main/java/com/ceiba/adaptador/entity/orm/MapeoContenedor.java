@@ -32,8 +32,6 @@ public final class MapeoContenedor {
 			entidadContenedor.setPerecedero(contenedor.getPerecedero());
 			entidadContenedor.setColor(contenedor.getColor());
 			entidadContenedor.setPeso(contenedor.getPeso());
-		}else {
-			entidadContenedor = new EntityContenedor("BR0756", "tomates", true, "balcno", "6t");
 		}
 		return entidadContenedor;
 	}

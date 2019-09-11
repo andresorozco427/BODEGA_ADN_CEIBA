@@ -2,7 +2,6 @@ package com.ceiba.servicio;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import org.junit.Test;
 
 import com.ceiba.modelo.Contenedor;
 import com.ceiba.modelo.HistorialAlmacenamiento;
-import com.ceiba.modelo.PruebaBase;
 import com.ceiba.modelo.bodega.BodegaAlmacenaje;
 import com.ceiba.modelo.bodega.BodegaAlmacenajeDirector;
 import com.ceiba.puerto.repositorio.RepositorioBodega;
