@@ -47,7 +47,6 @@ public class ServicioSalidaContenedor{
 			if(cantidadDeHorasEnBodega(historialAlmacenamiento.getFechaIngreso()) >= HORAS_DIA) {
 				BodegaAlmacenaje bodegaAlmacenaje = new BodegaAlmacenaje("BD003", "Cra 142 #55-64", "Ceiba Software S.A.S Perecederos Caducados", "4133234", "Contenedores Perecederos Caducados");
 				historialAlmacenamiento.setBodegaAlmacenaje(bodegaAlmacenaje);	
-				System.out.println(historialAlmacenamiento.getBodegaAlmacenaje().getCodigo());
 				this.repositorioBodega.crear(bodegaAlmacenaje);
 				this.repositorioHistorialAlmacenamiento.actualizarCambioDeBodegaContenedorPerecederoCaducado(historialAlmacenamiento);		
 			}
@@ -55,7 +54,7 @@ public class ServicioSalidaContenedor{
 	}
 	
 	public int cantidadDeHorasEnBodega(LocalDateTime fechaIngreso) {
-		LocalDateTime fechaActual = LocalDateTime.now().plusHours(23).plusMinutes(59).plusSeconds(30);
+		LocalDateTime fechaActual = LocalDateTime.now();
 		Duration duration = Duration.between(fechaActual, fechaIngreso);
 		long segundos = Math.abs(duration.getSeconds());
 		

@@ -1,10 +1,6 @@
 package com.ceiba.modelo.bodega;
 
-public class BodegaAlmacenajeDirector {	
-	
-	private BodegaAlmacenajeDirector() {
-		
-	}
+public interface BodegaAlmacenajeDirector {		
 	
 	public static BodegaAlmacenaje crear(boolean perecedero) {
 		if(perecedero) {

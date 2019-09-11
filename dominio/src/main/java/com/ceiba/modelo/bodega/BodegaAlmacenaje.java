@@ -7,9 +7,6 @@ public class BodegaAlmacenaje {
 	private String direccion;
 	private String telefono;
 	private String tipoContenedores;	
-
-	public BodegaAlmacenaje() {
-	}
 	
 	public BodegaAlmacenaje(String codigo, String nombre, String direccion, String telefono, String tipoContenedores) {
 		this.codigo = codigo;
