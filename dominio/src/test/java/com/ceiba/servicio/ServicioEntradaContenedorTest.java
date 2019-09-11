@@ -1,6 +1,5 @@
 package com.ceiba.servicio;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -15,7 +14,6 @@ import com.ceiba.excepcion.ExcepcionDiaNoHabil;
 import com.ceiba.modelo.Contenedor;
 import com.ceiba.modelo.HistorialAlmacenamiento;
 import com.ceiba.modelo.PruebaBase;
-import com.ceiba.modelo.bodega.BodegaAlmacenaje;
 import com.ceiba.puerto.repositorio.RepositorioBodega;
 import com.ceiba.puerto.repositorio.RepositorioContenedor;
 import com.ceiba.puerto.repositorio.RepositorioHistorialAlmacenamiento;
@@ -30,8 +28,6 @@ public class ServicioEntradaContenedorTest {
 	private static final DayOfWeek DIA_SABADO = DayOfWeek.SATURDAY;
 	private static final DayOfWeek DIA_DOMINGO = DayOfWeek.SUNDAY;
 	private static final String DIA_NO_HABIL = "El contenedor no puede ingresar, dia no habil";
-	private static final String BODEGA_ALMACENAJE_CONTENIDO_PERECEDEROS = "Contenedores Perecederos";
-	private static final String BODEGA_ALMACENAJE_CONTENIDO_NO_PERECEDEROS = "Contenedores No Perecederos";
 	
 	private RepositorioHistorialAlmacenamiento repositorioHistorialAlmacenamiento;
 	private RepositorioContenedor repositorioContenedor;
@@ -152,32 +148,6 @@ public class ServicioEntradaContenedorTest {
 		
 		//Act //Assert
 		PruebaBase.assertThrow(() -> servicioHistorialAlmacenamiento.validarCodigoParaDiasHabiles(contenedor.getCodigo(), DIA_DOMINGO), ExcepcionDiaNoHabil.class,DIA_NO_HABIL);
-	}
-	
-	@Test
-	public void validarBodegaDeAlmacenamientoSegunContenedorConContenidoPerecedero() {
-		//Arrange
-		Contenedor contenedor = new ContenedorTestBuilder().conEsPerecedero(true).build();		
-		ServicioEntradaContenedor servicioEntradaContenedor = new ServicioEntradaContenedor(repositorioHistorialAlmacenamiento, repositorioContenedor, repositorioBodega);
-		
-		//Act
-		BodegaAlmacenaje bodegaAlmacenaje = servicioEntradaContenedor.creacionDeBodegaSegunTipoContenidoContenedor(contenedor.getPerecedero());
-		
-		//Assert
-		assertEquals(bodegaAlmacenaje.getTipoContenedores(), BODEGA_ALMACENAJE_CONTENIDO_PERECEDEROS);
-	}
-	
-	@Test
-	public void validarBodegaDeAlmacenamientoSegunContenedorConContenidoNoPerecedero() {
-		//Arrange
-		Contenedor contenedor = new ContenedorTestBuilder().conEsPerecedero(false).build();		
-		ServicioEntradaContenedor servicioEntradaContenedor = new ServicioEntradaContenedor(repositorioHistorialAlmacenamiento, repositorioContenedor,repositorioBodega);
-		
-		//Act
-		BodegaAlmacenaje bodegaAlmacenaje = servicioEntradaContenedor.creacionDeBodegaSegunTipoContenidoContenedor(contenedor.getPerecedero());
-		
-		//Assert
-		assertEquals(bodegaAlmacenaje.getTipoContenedores(), BODEGA_ALMACENAJE_CONTENIDO_NO_PERECEDEROS);
 	}
 	
 }

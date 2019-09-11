@@ -47,8 +47,7 @@ public class ServicioEntradaContenedor{
 		int totalCobrar = 0;
 		LocalDateTime fechaIngreso = LocalDateTime.now();
 		LocalDateTime fechaSalida = null;		
-		BodegaAlmacenaje bodegaAlmacenaje = creacionDeBodegaSegunTipoContenidoContenedor(contenedor.getPerecedero());
-		
+		BodegaAlmacenaje bodegaAlmacenaje = BodegaAlmacenajeDirector.crear(contenedor.getPerecedero());	
 		HistorialAlmacenamiento historialAlmacenamiento = new HistorialAlmacenamiento(fechaIngreso, fechaSalida, contenedor,bodegaAlmacenaje, totalCobrar);
 	
 		validarContenedorAlmacenado(contenedor.getCodigo());
@@ -58,10 +57,6 @@ public class ServicioEntradaContenedor{
 		this.repositorioBodega.crear(bodegaAlmacenaje);
 		this.repositorioContenedor.crear(contenedor);
 		this.repositorioHistorialAlmacenamiento.crearHistorial(historialAlmacenamiento);
-	}
-	
-	public BodegaAlmacenaje creacionDeBodegaSegunTipoContenidoContenedor(boolean perecedero) {		
-		return BodegaAlmacenajeDirector.crear(perecedero);
 	}
 
 	public void validarCodigoParaDiasHabiles(String codigo, DayOfWeek dayOfWeek) {
