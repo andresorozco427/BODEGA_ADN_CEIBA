@@ -139,23 +139,5 @@ public class ServicioSalidaContenedorTest {
 		assertEquals(valorTotalAPagar, 380000, 0.0001);
 	}
 	
-	@Test 
-	public void cambioDeBodegaContenedorPerecederoPasadaVeintiCuatroHoras() {
-		//Arrange 
-		 List<HistorialAlmacenamiento> listaContenedores = new ArrayList<>();
-		LocalDateTime fechaIngreso = LocalDateTime.now();
-		HistorialAlmacenamiento historialAlmacenamiento = new HistorialAlmacenamiento();
-		Contenedor contenedor = new ContenedorTestBuilder().build();
-		historialAlmacenamiento.setContenedor(contenedor);
-		listaContenedores.add(historialAlmacenamiento);
-		
-		ServicioSalidaContenedor servicioContenedorSalida = mock(ServicioSalidaContenedor.class);
-		//Act
-		when(servicioContenedorSalida.cantidadDeHorasEnBodega(fechaIngreso)).thenReturn(25);
-		servicioContenedorSalida.consultarEstadiaContenedorPerecedero(listaContenedores);	
-		//Assert				
-		assertEquals(historialAlmacenamiento.getBodegaAlmacenaje().getCodigo(), "BD003");
-	}
-	
 	
 }

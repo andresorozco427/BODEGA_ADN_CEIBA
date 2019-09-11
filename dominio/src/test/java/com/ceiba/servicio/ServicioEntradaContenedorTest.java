@@ -30,8 +30,8 @@ public class ServicioEntradaContenedorTest {
 	private static final DayOfWeek DIA_SABADO = DayOfWeek.SATURDAY;
 	private static final DayOfWeek DIA_DOMINGO = DayOfWeek.SUNDAY;
 	private static final String DIA_NO_HABIL = "El contenedor no puede ingresar, dia no habil";
-	private static final String BODEGA_ALMACENAJE_CONTENIDO_PERECEDEROS = "Contenido perecedero";
-	private static final String BODEGA_ALMACENAJE_CONTENIDO_NO_PERECEDEROS = "Contenido no perecedero";
+	private static final String BODEGA_ALMACENAJE_CONTENIDO_PERECEDEROS = "Contenedores Perecederos";
+	private static final String BODEGA_ALMACENAJE_CONTENIDO_NO_PERECEDEROS = "Contenedores No Perecederos";
 	
 	private RepositorioHistorialAlmacenamiento repositorioHistorialAlmacenamiento;
 	private RepositorioContenedor repositorioContenedor;
