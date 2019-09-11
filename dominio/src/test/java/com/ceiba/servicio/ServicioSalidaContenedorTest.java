@@ -13,9 +13,7 @@ import org.junit.Test;
 
 import com.ceiba.modelo.Contenedor;
 import com.ceiba.modelo.HistorialAlmacenamiento;
-import com.ceiba.modelo.bodega.BodegaAlmacenaje;
-import com.ceiba.modelo.bodega.BodegaAlmacenajeDirector;
-import com.ceiba.modelo.bodega.BodegaContenedoresPerecederos;
+import com.ceiba.puerto.repositorio.RepositorioBodega;
 import com.ceiba.puerto.repositorio.RepositorioHistorialAlmacenamiento;
 import com.ceiba.testdatabuilder.ContenedorTestBuilder;
 
@@ -24,10 +22,12 @@ public class ServicioSalidaContenedorTest {
 	private static final String CODIGO_CON_RESTRICCIONES = "BR3432";
 	
 	private RepositorioHistorialAlmacenamiento repositorioHistorialAlmacenamiento;
+	private RepositorioBodega repositorioBodega;
 	
 	@Before
 	public void setUp() {
 		this.repositorioHistorialAlmacenamiento = mock(RepositorioHistorialAlmacenamiento.class);
+		this.repositorioBodega = mock(RepositorioBodega.class);
 	}
 
 	
@@ -38,7 +38,7 @@ public class ServicioSalidaContenedorTest {
 		LocalDateTime fechaSalida = LocalDateTime.now().plusHours(24);
 		Contenedor contenedor = new ContenedorTestBuilder().conCodigo(CODIGO_SIN_RESTRICCIONES).build();
 		
-		ServicioSalidaContenedor servicioContenedorSalida = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento);
+		ServicioSalidaContenedor servicioContenedorSalida = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento, repositorioBodega);
 		//Act 
 		float valorTotalAPagar = servicioContenedorSalida.calcularPagoSegunContenedor(fechaIngreso, fechaSalida, contenedor.getCodigo());
 		//Assert
@@ -52,7 +52,7 @@ public class ServicioSalidaContenedorTest {
 		LocalDateTime fechaSalida = LocalDateTime.now().plusDays(1).plusHours(4);
 		Contenedor contenedor = new ContenedorTestBuilder().conCodigo(CODIGO_SIN_RESTRICCIONES).build();
 		
-		ServicioSalidaContenedor servicioContenedorSalida = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento);
+		ServicioSalidaContenedor servicioContenedorSalida = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento,repositorioBodega);
 		//Act
 		float valorTotalAPagar = servicioContenedorSalida.calcularPagoSegunContenedor(fechaIngreso, fechaSalida, contenedor.getCodigo());
 		//Assert
@@ -66,7 +66,7 @@ public class ServicioSalidaContenedorTest {
 		LocalDateTime fechaSalida = LocalDateTime.now().plusHours(7);
 		Contenedor contenedor = new ContenedorTestBuilder().conCodigo(CODIGO_SIN_RESTRICCIONES).build();
 		
-		ServicioSalidaContenedor servicioContenedorSalida = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento);
+		ServicioSalidaContenedor servicioContenedorSalida = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento, repositorioBodega);
 		//Act
 		float valorTotalAPagar = servicioContenedorSalida.calcularPagoSegunContenedor(fechaIngreso, fechaSalida, contenedor.getCodigo());
 		//Assert
@@ -80,7 +80,7 @@ public class ServicioSalidaContenedorTest {
 		LocalDateTime fechaSalida = LocalDateTime.now().plusDays(3);
 		Contenedor contenedor = new ContenedorTestBuilder().conCodigo(CODIGO_SIN_RESTRICCIONES).build();
 		
-		ServicioSalidaContenedor servicioContenedorSalida = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento);
+		ServicioSalidaContenedor servicioContenedorSalida = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento,repositorioBodega);
 		//Act
 		float valorTotalAPagar = servicioContenedorSalida.calcularPagoSegunContenedor(fechaIngreso, fechaSalida, contenedor.getCodigo());
 		//Assert
@@ -93,7 +93,7 @@ public class ServicioSalidaContenedorTest {
 		LocalDateTime fechaIngreso = LocalDateTime.now();
 		LocalDateTime fechaSalida = LocalDateTime.now().plusDays(1);		
 		Contenedor contenedor = new ContenedorTestBuilder().conCodigo(CODIGO_CON_RESTRICCIONES).build();		
-		ServicioSalidaContenedor servicioContenedorSalida = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento);
+		ServicioSalidaContenedor servicioContenedorSalida = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento, repositorioBodega);
 		//Act
 		float valorTotalAPagar = servicioContenedorSalida.calcularPagoSegunContenedor(fechaIngreso, fechaSalida, contenedor.getCodigo());
 		//Assert
@@ -106,7 +106,7 @@ public class ServicioSalidaContenedorTest {
 		LocalDateTime fechaIngreso = LocalDateTime.now();
 		LocalDateTime fechaSalida = LocalDateTime.now().plusDays(1).plusHours(6);		
 		Contenedor contenedor = new ContenedorTestBuilder().conCodigo(CODIGO_CON_RESTRICCIONES).build();		
-		ServicioSalidaContenedor servicioContenedorSalida = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento);
+		ServicioSalidaContenedor servicioContenedorSalida = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento, repositorioBodega);
 		//Act
 		float valorTotalAPagar = servicioContenedorSalida.calcularPagoSegunContenedor(fechaIngreso, fechaSalida, contenedor.getCodigo());
 		//Assert
@@ -119,7 +119,7 @@ public class ServicioSalidaContenedorTest {
 		LocalDateTime fechaIngreso = LocalDateTime.now();
 		LocalDateTime fechaSalida = LocalDateTime.now().plusHours(5);		
 		Contenedor contenedor = new ContenedorTestBuilder().conCodigo(CODIGO_CON_RESTRICCIONES).build();		
-		ServicioSalidaContenedor servicioContenedorSalida = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento);
+		ServicioSalidaContenedor servicioContenedorSalida = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento, repositorioBodega);
 		//Act
 		float valorTotalAPagar = servicioContenedorSalida.calcularPagoSegunContenedor(fechaIngreso, fechaSalida, contenedor.getCodigo());
 		//Assert
@@ -132,11 +132,29 @@ public class ServicioSalidaContenedorTest {
 		LocalDateTime fechaIngreso = LocalDateTime.now();
 		LocalDateTime fechaSalida = LocalDateTime.now().plusDays(3);		
 		Contenedor contenedor = new ContenedorTestBuilder().conCodigo(CODIGO_CON_RESTRICCIONES).build();		
-		ServicioSalidaContenedor servicioContenedorSalida = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento);
+		ServicioSalidaContenedor servicioContenedorSalida = new ServicioSalidaContenedor(repositorioHistorialAlmacenamiento, repositorioBodega);
 		//Act
 		float valorTotalAPagar = servicioContenedorSalida.calcularPagoSegunContenedor(fechaIngreso, fechaSalida, contenedor.getCodigo());
 		//Assert
 		assertEquals(valorTotalAPagar, 380000, 0.0001);
+	}
+	
+	@Test 
+	public void cambioDeBodegaContenedorPerecederoPasadaVeintiCuatroHoras() {
+		//Arrange 
+		 List<HistorialAlmacenamiento> listaContenedores = new ArrayList<>();
+		LocalDateTime fechaIngreso = LocalDateTime.now();
+		HistorialAlmacenamiento historialAlmacenamiento = new HistorialAlmacenamiento();
+		Contenedor contenedor = new ContenedorTestBuilder().build();
+		historialAlmacenamiento.setContenedor(contenedor);
+		listaContenedores.add(historialAlmacenamiento);
+		
+		ServicioSalidaContenedor servicioContenedorSalida = mock(ServicioSalidaContenedor.class);
+		//Act
+		when(servicioContenedorSalida.cantidadDeHorasEnBodega(fechaIngreso)).thenReturn(25);
+		servicioContenedorSalida.consultarEstadiaContenedorPerecedero(listaContenedores);	
+		//Assert				
+		assertEquals(historialAlmacenamiento.getBodegaAlmacenaje().getCodigo(), "BD003");
 	}
 	
 	

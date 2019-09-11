@@ -24,8 +24,8 @@ public class ManejadorSalidaContenedor {
 		this.servicioConsultaContenedores = servicioConsultaContenedores;
 	}
 	
-	public HistorialAlmacenamiento consultaHistorialAlmacenamientoContenedoresPerecederos(List<HistorialAlmacenamiento> listaContenedores) {
-		return this.servicioContenedorSalida.consultarEstadiaContenedorPerecedero(listaContenedores);
+	public void consultaHistorialAlmacenamientoContenedoresPerecederos(List<HistorialAlmacenamiento> listaContenedores) {
+		 this.servicioContenedorSalida.consultarEstadiaContenedorPerecedero(listaContenedores);
 	}
 	
 	public boolean elcontenedorSeEncuentraAlmacenado(String codigo) {

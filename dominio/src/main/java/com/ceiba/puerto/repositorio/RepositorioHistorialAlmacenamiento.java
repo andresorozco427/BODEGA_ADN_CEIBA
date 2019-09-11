@@ -23,7 +23,7 @@ public interface RepositorioHistorialAlmacenamiento {
 	
 	public SalidaHistorialAlmacenamiento actualizarHistorialAlmacenamiento(HistorialAlmacenamiento historial);
 	
-//	public List<HistorialAlmacenamiento> consultaHistorialAlmacenamientoContenedoresPerecederos();
+	public void actualizarCambioDeBodegaContenedorPerecederoCaducado(HistorialAlmacenamiento historial); 
 
 	public List<HistorialAlmacenamiento> consultarContenedoresAlmacenadosEnLaBodega();
 

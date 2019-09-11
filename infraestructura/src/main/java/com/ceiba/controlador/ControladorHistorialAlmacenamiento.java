@@ -3,6 +3,7 @@ package com.ceiba.controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,5 +53,11 @@ public class ControladorHistorialAlmacenamiento {
 		HistorialAlmacenamiento historialAlmacenamiento;
 		historialAlmacenamiento = this.manejadorConsultasContenedor.consultarHistorialAlmacenamiento(codigo);
 		return this.manejadorSalidaContenedor.retirarAlmacenamientoContenedor(historialAlmacenamiento);
+	}
+	
+	@Scheduled(fixedRate = 1000)
+	public void cambioDeBodegaCotenendoresPerecederosCaducados() {
+		List<HistorialAlmacenamiento> listaContenedores = this.manejadorConsultasContenedor.listarContenedoresAlmacenados();
+		this.manejadorSalidaContenedor.consultaHistorialAlmacenamientoContenedoresPerecederos(listaContenedores);
 	}
 }

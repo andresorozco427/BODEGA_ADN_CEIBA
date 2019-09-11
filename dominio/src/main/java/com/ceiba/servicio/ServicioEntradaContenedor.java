@@ -13,8 +13,6 @@ import com.ceiba.modelo.Contenedor;
 import com.ceiba.modelo.HistorialAlmacenamiento;
 import com.ceiba.modelo.bodega.BodegaAlmacenaje;
 import com.ceiba.modelo.bodega.BodegaAlmacenajeDirector;
-import com.ceiba.modelo.bodega.BodegaContenedoresNoPerecederos;
-import com.ceiba.modelo.bodega.BodegaContenedoresPerecederos;
 import com.ceiba.puerto.repositorio.RepositorioBodega;
 import com.ceiba.puerto.repositorio.RepositorioContenedor;
 import com.ceiba.puerto.repositorio.RepositorioHistorialAlmacenamiento;
@@ -62,17 +60,8 @@ public class ServicioEntradaContenedor{
 		this.repositorioHistorialAlmacenamiento.crearHistorial(historialAlmacenamiento);
 	}
 	
-	public BodegaAlmacenaje creacionDeBodegaSegunTipoContenidoContenedor(boolean perecedero) {
-		BodegaAlmacenajeDirector director = new BodegaAlmacenajeDirector();
-		if(perecedero) {
-			director.setBodegaBuilder(new BodegaContenedoresPerecederos());
-			director.construirBodega();
-		}else{
-			director.setBodegaBuilder(new BodegaContenedoresNoPerecederos());
-			director.construirBodega();
-		}	
-			
-		return director.obtenerBodegaAlmacenaje();
+	public BodegaAlmacenaje creacionDeBodegaSegunTipoContenidoContenedor(boolean perecedero) {		
+		return BodegaAlmacenajeDirector.crear(perecedero);
 	}
 
 	public void validarCodigoParaDiasHabiles(String codigo, DayOfWeek dayOfWeek) {

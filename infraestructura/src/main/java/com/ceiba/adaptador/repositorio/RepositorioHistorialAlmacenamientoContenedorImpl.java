@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ceiba.adaptador.crudrepository.CrudHistorialAlmacenamientoRepository;
 import com.ceiba.adaptador.entity.EntityHistorialAlmacenamiento;
+import com.ceiba.adaptador.entity.orm.MapeoBodega;
 import com.ceiba.adaptador.entity.orm.MapeoHistorialAlmacenamiento;
 import com.ceiba.modelo.HistorialAlmacenamiento;
 import com.ceiba.modelo.SalidaHistorialAlmacenamiento;
@@ -73,11 +74,12 @@ public class RepositorioHistorialAlmacenamientoContenedorImpl implements Reposit
 		return historialAlmacenamiento.getFechaSalida() != null;
 	}
 
-//	@Override
-//	public List<HistorialAlmacenamiento> consultaHistorialAlmacenamientoContenedoresPerecederos() {
-//		Iterable<EntityHistorialAlmacenamiento> listaContenedores = this.crudHistorialAlmacenamientoRepository.findAllByContenedorPerecedero();
-//		return MapeoHistorialAlmacenamiento.convertirAModelo(listaContenedores);
-//	}
+	@Override
+	public void actualizarCambioDeBodegaContenedorPerecederoCaducado(HistorialAlmacenamiento historial) {
+		EntityHistorialAlmacenamiento entityHistorialAlmacenamiento = this.crudHistorialAlmacenamientoRepository.findByContenedorCodigo(historial.getContenedor().getCodigo());
+		entityHistorialAlmacenamiento.setBodega(MapeoBodega.convertirAEntidad(historial.getBodegaAlmacenaje()));
+		this.crudHistorialAlmacenamientoRepository.save(entityHistorialAlmacenamiento);
+	}
 
 
 }
