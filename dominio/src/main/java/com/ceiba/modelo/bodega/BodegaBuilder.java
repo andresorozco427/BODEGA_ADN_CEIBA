@@ -6,10 +6,6 @@ public class BodegaBuilder {
 	private String direccion;
 	private String telefono;
 	private String tipoContenedores;	
-	
-	public BodegaBuilder() {
-		
-	}
 
 	public BodegaBuilder conCodigo(String codigo) {
 		this.codigo = codigo;

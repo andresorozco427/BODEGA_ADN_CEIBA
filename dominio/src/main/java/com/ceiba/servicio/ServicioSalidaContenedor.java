@@ -44,7 +44,7 @@ public class ServicioSalidaContenedor extends CalcularHoras{
 	public void consultarEstadiaContenedorPerecedero(List<HistorialAlmacenamiento> listaContenedoresAlmacenados) {
 		List<HistorialAlmacenamiento> listaContenedores = listaContenedoresAlmacenados.stream().filter(h -> h.getContenedor().getPerecedero() && h.getBodegaAlmacenaje().getCodigo().contentEquals("BD001")).collect(Collectors.toList());
 		for (HistorialAlmacenamiento historialAlmacenamiento : listaContenedores) {
-			if(cantidadDeHorasEnBodega(historialAlmacenamiento.getFechaIngreso()) >= HORAS_DIA) {
+			if(horasTranscurridas(historialAlmacenamiento.getFechaIngreso(), LocalDateTime.now()) >= HORAS_DIA) {
 				BodegaAlmacenaje bodegaAlmacenaje = new BodegaAlmacenaje("BD003", "Cra 142 #55-64", "Ceiba Software S.A.S Perecederos Caducados", "4133234", "Contenedores Perecederos Caducados");
 				historialAlmacenamiento.setBodegaAlmacenaje(bodegaAlmacenaje);	
 				this.repositorioBodega.crear(bodegaAlmacenaje);
