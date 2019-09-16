@@ -47,7 +47,20 @@ public class ControladorHistorialAlmacenamiento {
 	public List<HistorialAlmacenamiento> consultarContenedoresAlmacenados() {
 		return this.manejadorConsultasContenedor.listarContenedoresAlmacenados();
 	}
-
+	
+	@GetMapping("/obtenerContenedor/{codigo}")
+	public HistorialAlmacenamiento consultarHistorialAlmacenamiento(@PathVariable String codigo) {
+		return this.manejadorConsultasContenedor.consultarHistorialAlmacenamiento(codigo);
+	}
+	
+	@PutMapping("/actualizarHistorial/{codigo}")
+	public HistorialAlmacenamiento actualizarHistorialAlmacenamiento(@RequestBody ComandoContenedor comandoContenedor, @PathVariable String codigo) {
+		HistorialAlmacenamiento historialAlmacenamiento;
+		historialAlmacenamiento = this.manejadorConsultasContenedor.consultarHistorialAlmacenamiento(codigo);
+		return this.manejadorConsultasContenedor.actualizarContenedorAlmacenado(historialAlmacenamiento, comandoContenedor);
+	}
+	
+	
 	@PutMapping("/SalidaContenedor/{codigo}")
 	public SalidaHistorialAlmacenamiento salidaContenedor(@PathVariable String codigo) {
 		HistorialAlmacenamiento historialAlmacenamiento;

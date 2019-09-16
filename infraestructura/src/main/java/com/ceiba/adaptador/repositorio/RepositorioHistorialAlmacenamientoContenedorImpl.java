@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.ceiba.adaptador.crudrepository.CrudHistorialAlmacenamientoRepository;
 import com.ceiba.adaptador.entity.EntityHistorialAlmacenamiento;
 import com.ceiba.adaptador.entity.orm.MapeoBodega;
+import com.ceiba.adaptador.entity.orm.MapeoContenedor;
 import com.ceiba.adaptador.entity.orm.MapeoHistorialAlmacenamiento;
 import com.ceiba.modelo.HistorialAlmacenamiento;
 import com.ceiba.modelo.SalidaHistorialAlmacenamiento;
@@ -79,6 +80,13 @@ public class RepositorioHistorialAlmacenamientoContenedorImpl implements Reposit
 		EntityHistorialAlmacenamiento entityHistorialAlmacenamiento = this.crudHistorialAlmacenamientoRepository.findByContenedorCodigo(historial.getContenedor().getCodigo());
 		entityHistorialAlmacenamiento.setBodega(MapeoBodega.convertirAEntidad(historial.getBodegaAlmacenaje()));
 		this.crudHistorialAlmacenamientoRepository.save(entityHistorialAlmacenamiento);
+	}
+
+	@Override
+	public HistorialAlmacenamiento actualizarContenedorAlmacenado(HistorialAlmacenamiento historialAlmacenamiento) {
+		EntityHistorialAlmacenamiento entityHistorialAlmacenamiento = this.crudHistorialAlmacenamientoRepository.findByContenedorCodigo(historialAlmacenamiento.getContenedor().getCodigo());
+		entityHistorialAlmacenamiento.setContenedor(MapeoContenedor.convertirAEntidad(historialAlmacenamiento.getContenedor()));
+		return MapeoHistorialAlmacenamiento.convertirAModelo(entityHistorialAlmacenamiento);
 	}
 
 
