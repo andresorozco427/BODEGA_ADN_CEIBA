@@ -4,9 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.ceiba.comando.ComandoContenedor;
-import com.ceiba.modelo.Contenedor;
 import com.ceiba.modelo.HistorialAlmacenamiento;
 import com.ceiba.servicio.ServicioConsultaContenedores;
 
@@ -26,14 +23,6 @@ public class ManejadorConsultaAlmacenamiento {
 	
 	public HistorialAlmacenamiento consultarHistorialAlmacenamiento(String codigo) {
 		return this.servicioConsultaContenedores.consultarHistorialDeAlmacenamiento(codigo);
-	}
-
-	public HistorialAlmacenamiento actualizarContenedorAlmacenado(HistorialAlmacenamiento historialAlmacenamiento,
-			ComandoContenedor comandoContenedor) {
-		Contenedor contenedor = new Contenedor(comandoContenedor.getCodigo(), comandoContenedor.getMercancia(), comandoContenedor.getPerecedero(),
-		comandoContenedor.getColor(), comandoContenedor.getPeso());
-		
-		return this.servicioConsultaContenedores.actualizarContenedorAlmacenado(historialAlmacenamiento, contenedor);
 	}
 	
 	

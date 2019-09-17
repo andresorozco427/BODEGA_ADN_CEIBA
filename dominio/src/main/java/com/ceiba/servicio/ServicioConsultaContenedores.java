@@ -2,7 +2,6 @@ package com.ceiba.servicio;
 
 import java.util.List;
 
-import com.ceiba.modelo.Contenedor;
 import com.ceiba.modelo.HistorialAlmacenamiento;
 import com.ceiba.puerto.repositorio.RepositorioHistorialAlmacenamiento;
 
@@ -25,13 +24,6 @@ public class ServicioConsultaContenedores{
 	public boolean elContenedorSeEncuentraAlmacenado(String codigo) {
 		return this.repositorioHistorialAlmacenamiento.elContenedorSeEncuentraAlmacenado(codigo);
 	}
-
-	public HistorialAlmacenamiento actualizarContenedorAlmacenado(HistorialAlmacenamiento historialAlmacenamiento,
-			Contenedor contenedor) {
-		historialAlmacenamiento.setContenedor(contenedor);		
-		
-		return this.repositorioHistorialAlmacenamiento.actualizarContenedorAlmacenado(historialAlmacenamiento);
-	}	
 	
 	
 }

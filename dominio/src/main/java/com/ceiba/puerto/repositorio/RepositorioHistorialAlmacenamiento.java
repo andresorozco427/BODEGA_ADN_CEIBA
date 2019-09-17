@@ -30,6 +30,4 @@ public interface RepositorioHistorialAlmacenamiento {
 	public HistorialAlmacenamiento consultarContenedorAlmacenado(String codigo);
 
 	public boolean elContenedorSeEncuentraAlmacenado(String codigo);
-
-	public HistorialAlmacenamiento actualizarContenedorAlmacenado(HistorialAlmacenamiento historialAlmacenamiento);
 }

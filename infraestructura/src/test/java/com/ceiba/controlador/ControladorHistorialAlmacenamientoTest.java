@@ -90,27 +90,6 @@ public class ControladorHistorialAlmacenamientoTest {
 				.andExpect(status().isOk());
 	}
 	
-	@Test
-	public void metodoActualizarContenedorAlmacenado() throws Exception {	
-		//Arrange
-		ComandoContenedor comandoContenedor2 = new ComandoContenedorTestBuilder().conMercancia("Ganado").conColor("Azul").conPeso("60t").build();
-		//Arrange
-		ComandoContenedor contenedor1 = new ComandoContenedorTestBuilder().conMercancia("Peras").conPeso("20t").build();
-		
-		//Act //Assert
-		mockMvc.perform(MockMvcRequestBuilders
-				.post(URLPOST)
-				.content(asJsonString(contenedor1)).contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON));
-		//Act //Assert
-		
-		mockMvc.perform(MockMvcRequestBuilders
-				.put("/api/bodega/actualizarHistorial/"  + contenedor1.getCodigo())
-				.content(asJsonString(comandoContenedor2))
-				.contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
-	}
-	
 
 	public static String asJsonString(final Object object) throws Exception {
 		try {
