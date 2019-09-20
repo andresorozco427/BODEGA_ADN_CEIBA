@@ -10,7 +10,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataAccessException;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -29,7 +28,11 @@ public class ControladorHistorialAlmacenamientoTest {
 	private static final String URLPOST = "/api/bodega/registrarHistorial";
 
 	@Autowired
-	private MockMvc mockMvc;		
+	private MockMvc mockMvc;	
+	
+	@Autowired
+	private ObjectMapper mapper;
+	
 	@Test
 	public void metodoCrearHistorialAlmacenamient() throws Exception{
 		
@@ -39,7 +42,7 @@ public class ControladorHistorialAlmacenamientoTest {
 		//Act //Assert
 		mockMvc.perform(MockMvcRequestBuilders
 				.post(URLPOST)
-				.content(asJsonString(contenedor)).contentType(MediaType.APPLICATION_JSON)
+				.content(mapper.writeValueAsString(contenedor)).contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());	
 	}
 	
@@ -63,11 +66,11 @@ public class ControladorHistorialAlmacenamientoTest {
 		//Act //Assert
 		mockMvc.perform(MockMvcRequestBuilders
 				.post(URLPOST)
-				.content(asJsonString(comandoContenedor2)).contentType(MediaType.APPLICATION_JSON)
+				.content(mapper.writeValueAsString(comandoContenedor2)).contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON));
 		
 		mockMvc.perform(MockMvcRequestBuilders
-				.put("/api/bodega/SalidaContenedor/" + CODIGO2)
+				.put("/api/bodega/salidaContenedor/" + CODIGO2)
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());
 	}
@@ -80,7 +83,7 @@ public class ControladorHistorialAlmacenamientoTest {
 		//Act //Assert
 		mockMvc.perform(MockMvcRequestBuilders
 				.post(URLPOST)
-				.content(asJsonString(comandoContenedor1)).contentType(MediaType.APPLICATION_JSON)
+				.content(mapper.writeValueAsString(comandoContenedor1)).contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON));
 		
 		mockMvc.perform(MockMvcRequestBuilders
@@ -90,13 +93,13 @@ public class ControladorHistorialAlmacenamientoTest {
 				.andExpect(status().isOk());
 	}
 	
-
-	public static String asJsonString(final Object object) throws Exception {
-		try {
-			return new ObjectMapper().writeValueAsString(object);
-		}catch (DataAccessException e) {
-			throw new Exception(e);
-		}
+	@Test
+	public void validarManejadorDeError() throws Exception{
+				//Act //Assert				
+				mockMvc.perform(MockMvcRequestBuilders
+						.put("/api/bodega/salidaContenedor/" + null)
+						.contentType(MediaType.APPLICATION_JSON))
+						.andExpect(status().isInternalServerError());
 	}
 
 }

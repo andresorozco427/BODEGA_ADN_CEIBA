@@ -8,8 +8,7 @@ import com.ceiba.modelo.Contenedor;
 import com.ceiba.servicio.ServicioEntradaContenedor;
 
 @Component
-public class ManejadorCrearHistorialDeAlmacenamiento {	
-	
+public class ManejadorCrearHistorialDeAlmacenamiento {		
 	private ServicioEntradaContenedor servicioHistorialAlmacenamiento;
 
 	@Autowired
@@ -18,9 +17,8 @@ public class ManejadorCrearHistorialDeAlmacenamiento {
 	}
 	
 	public void ejecutar(ComandoContenedor comandoContenedor) {
-		Contenedor contenedor = new Contenedor(comandoContenedor.getCodigo(), comandoContenedor.getMercancia(), comandoContenedor.getPerecedero()
-				, comandoContenedor.getColor(),  comandoContenedor.getPeso());
-		
+		Contenedor contenedor = new Contenedor(comandoContenedor.getCodigo(), comandoContenedor.getMercancia(), 
+			comandoContenedor.getPerecedero(), comandoContenedor.getColor(), comandoContenedor.getPeso());	
 		this.servicioHistorialAlmacenamiento.ejecutar(contenedor);
 	}	
 

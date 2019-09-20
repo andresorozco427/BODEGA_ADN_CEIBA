@@ -11,7 +11,7 @@ public abstract class CalcularPago extends CalcularHoras{
 
 		if (horas < MINIMAS_HORAS) {
 			return (getValorHoras() * horas);
-		} else if (horas <= HORAS_DIA) {
+		} else if (horas < HORAS_DIA) {
 			return getValorDia();
 		} else {
 			float pago = 0;
