@@ -94,7 +94,20 @@ public class ControladorHistorialAlmacenamientoTest {
 	}
 	
 	@Test
-	public void validarManejadorDeError() throws Exception{
+	public void validarManejadorDeErrorEnExcepcion() throws Exception{
+		//Arrange
+				ComandoContenedor contenedor = new ComandoContenedorTestBuilder().conCodigo(null).conMercancia("Peras").conPeso("20t").build();
+				
+				//Act //Assert
+				mockMvc.perform(MockMvcRequestBuilders
+						.post(URLPOST)
+						.content(mapper.writeValueAsString(contenedor)).contentType(MediaType.APPLICATION_JSON)
+						.accept(MediaType.APPLICATION_JSON)).andExpect(status().isBadRequest());	
+	}
+
+	
+	@Test
+	public void validarManejadorDeErrorInternal() throws Exception{
 				//Act //Assert				
 				mockMvc.perform(MockMvcRequestBuilders
 						.put("/api/bodega/salidaContenedor/" + null)
