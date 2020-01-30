@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.ceiba.servicio.ServicioEntradaContenedorTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2019-12-17T13:29:23" hostname="ANDRES-OROZCO" time="0.439">
+<testsuite name="com.ceiba.servicio.ServicioEntradaContenedorTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2020-01-29T15:53:38" hostname="ANDRES-OROZCO" time="0.555">
   <properties/>
-  <testcase name="validarExistenciaContenedor" classname="com.ceiba.servicio.ServicioEntradaContenedorTest" time="0.415"/>
-  <testcase name="validarDisponibilidadDeCuposEnBodegaContenedoresPerecederos" classname="com.ceiba.servicio.ServicioEntradaContenedorTest" time="0.003"/>
+  <testcase name="validarExistenciaContenedor" classname="com.ceiba.servicio.ServicioEntradaContenedorTest" time="0.533"/>
+  <testcase name="validarDisponibilidadDeCuposEnBodegaContenedoresPerecederos" classname="com.ceiba.servicio.ServicioEntradaContenedorTest" time="0.002"/>
   <testcase name="validarDisponibilidadDeCuposEnBodegaContenedoresNoPerecederos" classname="com.ceiba.servicio.ServicioEntradaContenedorTest" time="0.002"/>
   <testcase name="validarAutorizacionDeIngresoDelContenedorDiaSabadoContenedorVenezolano" classname="com.ceiba.servicio.ServicioEntradaContenedorTest" time="0.003"/>
   <testcase name="validarAutorizacionDeIngresoDelContenedorDiaDomingoContenedorChileno" classname="com.ceiba.servicio.ServicioEntradaContenedorTest" time="0.002"/>
-  <testcase name="validarAutorizacionDeIngresoDelContenedorDiaDomingoContenedorArgentino" classname="com.ceiba.servicio.ServicioEntradaContenedorTest" time="0.001"/>
+  <testcase name="validarAutorizacionDeIngresoDelContenedorDiaDomingoContenedorArgentino" classname="com.ceiba.servicio.ServicioEntradaContenedorTest" time="0.002"/>
   <testcase name="validarAutorizacionDeIngresoDelContenedorDiaSabadoContenedorArgentino" classname="com.ceiba.servicio.ServicioEntradaContenedorTest" time="0.002"/>
   <testcase name="validarAutorizacionDeIngresoDelContenedorDiaSabadoContenedorChileno" classname="com.ceiba.servicio.ServicioEntradaContenedorTest" time="0.002"/>
   <testcase name="validarAutorizacionDeIngresoDelContenedorDiaDomingoContenedoVenezolano" classname="com.ceiba.servicio.ServicioEntradaContenedorTest" time="0.002"/>
